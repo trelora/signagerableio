@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get '/', to: "sessions#create"
-  get '/show', to: "sessions#show", as: :session
+  get '/', to: "devices#create"
+  get '/show', to: "devices#show", as: :device
 end
