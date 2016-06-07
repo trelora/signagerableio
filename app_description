@@ -1,0 +1,102 @@
+## Signagerableio
+
+The office has 19 TVs.  That’s  a lot!  They are scattered between team areas, and customer areas, and some are visible from the street.
+Something that makes us different is that we sell A LOT of properties and have A LOT of customers.  With 3 lead agents, and 9 total licensed agents we are in the top 15 brokers in Colorado.  We are just behind a company that has about 500 agents.
+Something else that makes us different is that we let our customers list as “Coming Soon” on our website.  In the current market that’s great ­there are a bunch of people trying to find houses and they hover over our coming soon listings. Makes sense that we should be promoting them on some of our TVs.
+We also have some great meeting rooms that are used by buyers and sellers to sign listing documents.  We want these people to walk away with the clear understanding that we are kicking ass, so we want them to see our successes, sold listings, as they sit in those rooms.
+
+## Application Overview
+
+We need an admin application, “the admin” to manage all the TVs, “the devices”.
+The devices will call the signage API, pull a bunch of data, then cycle through them until they are done.
+Wash, rinse, repeat.
+
+We are currently manually creating these screens as images and have experimented with designs.
+We will supply the current design as a recommended template.
+
+## Available APIs
+
+### API Strategy
+Our API strategy is to encapsulate data complexity on the server end, not the app end as is common in signage systems.
+The “dumber” the signage app, the less brittle it is allowing flexible changes to the data displayed with simple server side changes.
+
+### SignageRoles
+
+This will return what roles the signage API will respond to
+
+### SignageContents
+
+This will respond with an array  of property hashes including picture URLs, titles, etc.
+Everything that is needed to create the display.
+
+## Stories
+
+* As a device,  I want to be pointed at a simple URL
+* As a device, if I don’t have a cookie / session, I want to create a unique ID for myself, display it on myself and register myself with the admin
+* As an admin I want to see all registered devices
+* As an admin I want to add a nickname to a device,  e.g. “Meeting Room 1”
+* As an admin I want to assign a “role” a device, e.g. “Coming Soon Listings”
+* As an admin I optionally want to assign an ID to a device, e.g. “1234”
+* As an admin I want to be able to change a devices nickname or role
+* As a device I want my cookie to last forever if possible so that things “just work” when I switch on.
+* As an admin system I want to be have basic auth authentication
+* As a system I will pass an API_KEY with all api requests
+
+## Misc
+
+We will deliver:
+* Screen Resolutions
+* Design Template
+* Details API Doc
+
+## Requirements
+
+* Any authentication keys or basic auth user password pairs used by this application should not be checked into public repos.
+
+Preferences
+
+* If a front end framework is used, we would prefer it to be React.
+
+Example Scenario.
+
+Patrick installs an android box on one of our TVs.
+He fires it up, launches a browser in full screen mode and pulls up the app URL.
+
+As this is the first time the browser has hit the URL, it knows it needs to configure itself.
+
+The server returns a unique 5 letter code, e.g. ABCDE, and the device displays that and saves it as a perpetual cookie.
+
+Patrick logs into the admin and sees that a new device with ID ABCDE has registered itself.
+On the settings screen for that device he sees he can assign 3 things:
+
+1. What role the device should play (based on the SignageRoles API). He chooses “Coming Soon Listings”
+2. A nickname for the device. He types, “Reception Small Screen”
+3. A transaction ID, which he leaves blank.
+
+The device has been polling the SignageContents API which has up to this point returning no data, or “Wait” state data,
+
+but now that Patrick has saved the config it is returned an array of hashes, e.g. an array of 40 properties, each of which has data.
+
+The app cycles through these properties leaving each on the screen for X seconds.
+
+When it gets to the last one, it hits the endpoint again and keeps doing this until the end of time.
+
+During this transition nothing horrible happens..
+Someone looking at the TV doesn’t see some ghastly refresh..
+
+And if someone has come in and changed the settings for this device, the next set of data will have changed appropriately.
+
+## Above and Beyond
+
+Are you an overachiever? Here are some ideas to take it to the next level.
+
+* Include another setting for each device, which is a the length of time each page should be displayed for
+
+* If you can think of a good use for it we could extend SignageContents to include a “Primary” and “Other” pictures.
+
+* Inject “Static” content.  Build a CRUD system for the admin to be able to add splash content in between homes..
+E.g. after displaying 5 homes the device displays a random piece of static content.
+This would be an agreed format and we could provide a bunch of sample content so you can make decisions about how to store it.
+It could be something like: Title: “TRELORA”, Subtitle: “How Smart People Buy and sell Homes” which would then be suitably displayed.
+
+I’m thinking there might be a header, title, subtitle, footer.  If you’re interested let’s talk this through.
