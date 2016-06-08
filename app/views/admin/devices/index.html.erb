@@ -1,0 +1,17 @@
+<h1>Devices</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Code</th>
+    <th>Nickname</th>
+    <th>Role</th>
+  </tr>
+  <% @devices.each do |device| %>
+    <tr>
+      <td><%= device.id %></td>
+      <td><%= device.device_code %></td>
+      <td>Nick</td>
+      <td>Role</td>
+    </tr>
+  <% end %>
+</table>
