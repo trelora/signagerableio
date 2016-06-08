@@ -10,7 +10,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'unicorn'
 gem 'figaro'
-
+gem 'simplecov', :require => false, :group => :test
+gem 'faraday'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
@@ -21,8 +22,14 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'byebug'
+  gem 'pry-rails'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
+end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
 end
