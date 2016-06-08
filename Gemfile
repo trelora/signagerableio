@@ -33,4 +33,6 @@ end
 group :test do
   gem 'vcr'
   gem 'webmock'
+  gem 'show_me_the_cookies'
+  gem "database_cleaner"
 end
