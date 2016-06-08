@@ -2,7 +2,7 @@ class DevicesController < ApplicationController
   def create
     if cookies[:device_code].nil?
       device = Device.new
-      cookies[:device_code] = device.generate_device_code
+      cookies.permanent[:device_code] = device.generate_device_code
     end
     redirect_to device_path(0)
   end
