@@ -1,0 +1,17 @@
+<h1>Devices</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Code</th>
+    <th>Nickname</th>
+    <th>Role</th>
+  </tr>
+  <% @devices.each do |device| %>
+    <tr>
+      <td><%= link_to device.id, edit_admin_device_path(device.id) %></td>
+      <td><%= device.device_code %></td>
+      <td><%= device.nickname %></td>
+      <td><%= device.role %></td>
+    </tr>
+  <% end %>
+</table>

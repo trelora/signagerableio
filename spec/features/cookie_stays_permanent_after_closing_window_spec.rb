@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Cookie stays permanent" do
   scenario "device's cookie last 'forever' after closing window" do
-    device = FactoryGirl.create(:device)
+    device = create(:device)
 
     visit '/'
 
