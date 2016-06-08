@@ -6,8 +6,8 @@ RSpec.describe "Cookie stays permanent" do
 
     visit '/'
 
-    time = get_me_the_cookies.first[:expires].strftime("%B %d, %Y")
+    time = get_me_the_cookies.first[:expires].strftime("%Y")
 
-    expect(time).to eq("June 08, 2036")
+    expect(time).to eq("2036")
   end
 end
