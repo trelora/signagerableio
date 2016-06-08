@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get '/show', to: "devices#show", as: :device
 
   namespace :admin do
-    resources :devices, only: [:index]
+    resources :devices, only: [:index, :edit, :update]
   end
 end

@@ -8,10 +8,10 @@
   </tr>
   <% @devices.each do |device| %>
     <tr>
-      <td><%= device.id %></td>
+      <td><%= link_to device.id, edit_admin_device_path(device.id) %></td>
       <td><%= device.device_code %></td>
-      <td>Nick</td>
-      <td>Role</td>
+      <td><%= device.nickname %></td>
+      <td><%= device.role %></td>
     </tr>
   <% end %>
 </table>

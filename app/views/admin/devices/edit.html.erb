@@ -1,0 +1,10 @@
+<h1>Edit Device</h1>
+<%= form_for [:admin, @device] do |f| %>
+  <%= f.label :device_code %>
+  <%= f.text_field :device_code %>
+  <%= f.label :nickname %>
+  <%= f.text_field :nickname %>
+  <%= f.label :role %>
+  <%= f.text_field :role %>
+  <%= f.submit "Submit" %>
+<% end %>
