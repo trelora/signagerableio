@@ -12,6 +12,10 @@ gem 'unicorn'
 gem 'figaro'
 gem 'simplecov', :require => false, :group => :test
 gem 'faraday'
+gem 'responders', '~> 2.0'
+gem "capybara-webkit"
+gem "selenium-webdriver"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
