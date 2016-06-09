@@ -5,6 +5,10 @@
   <%= f.label :nickname %>
   <%= f.text_field :nickname %>
   <%= f.label :role %>
-  <%= f.text_field :role %>
+
+
+  <%= f.select(:role, options_for_select(Device.roles)) %>
+
+
   <%= f.submit "Submit" %>
 <% end %>
