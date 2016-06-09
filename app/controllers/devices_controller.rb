@@ -9,5 +9,6 @@ class DevicesController < ApplicationController
 
   def show
     @device = Device.find_by(device_code: cookies[:device_code])
+    @device.update(last_visit: Time.now.to_s)
   end
 end
