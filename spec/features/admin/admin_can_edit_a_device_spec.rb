@@ -19,11 +19,11 @@ RSpec.describe "When an admin clicks on a device" do
     visit '/admin/devices'
     click_on "#{device.id}"
 
-    fill_in "device[role]", with: "Coming Soon Listings"
+    select "comingsoon", :from => "device[role]"
     click_on "Submit"
 
     expect(current_path).to eq("/admin/devices")
-    expect(page).to have_content("Coming Soon Listings")
+    expect(page).to have_content("comingsoon")
   end
 
   it "they are able to set the device code" do

@@ -15,6 +15,14 @@ class TreloraServices
     parse(response)
   end
 
+  def get_roles
+    response = connection.get do |req|
+      req.url "/signage/roles?"
+      req.params["api_key"] = ENV["trelora_api_key"]
+    end
+    parse(response)
+  end
+
   private
     def connection
       @_connection
