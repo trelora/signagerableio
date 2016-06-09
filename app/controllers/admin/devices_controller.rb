@@ -16,6 +16,11 @@ class Admin::DevicesController < ApplicationController
     end
   end
 
+  def destroy
+    Device.find(params[:id]).delete
+    redirect_to admin_devices_path
+  end
+
   private
   def device_params
     params.require(:device).permit(:device_code, :nickname, :role)
