@@ -10,6 +10,8 @@ RSpec.describe "When device has a role", :js => true do
     device = Device.last
     device.update(role: "comingsoon")
 
+    visit '/'
+
     expect(current_path).to eq(device_path(0))
     wait_for_ajax
     expect(page).to have_content(listing[:ribbon])
