@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :devices, only: [:index, :edit, :update]
+    resources :devices, only: [:index, :edit, :update, :destroy]
   end
 end
