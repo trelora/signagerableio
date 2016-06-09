@@ -5,6 +5,7 @@
     <th>Code</th>
     <th>Nickname</th>
     <th>Role</th>
+    <th>Last Visited</th>
   </tr>
   <% @devices.each do |device| %>
     <tr>
@@ -12,6 +13,7 @@
       <td><%= device.device_code %></td>
       <td><%= device.nickname %></td>
       <td><%= device.role %></td>
+      <td><%= formatted_time(device.last_visit) %></td>
     </tr>
   <% end %>
 </table>
