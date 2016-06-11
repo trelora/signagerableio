@@ -11,7 +11,7 @@ RSpec.describe "When an admin clicks on a device" do
 
     expect(current_path).to eq("/admin/devices")
     expect(page).to have_content("Meeting Room 1")
-  end
+end
 
   it "they are able to give the device a role" do
     device = create(:device)

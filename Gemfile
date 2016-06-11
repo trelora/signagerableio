@@ -15,6 +15,7 @@ gem 'faraday'
 gem 'responders', '~> 2.0'
 gem "capybara-webkit"
 gem "selenium-webdriver"
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

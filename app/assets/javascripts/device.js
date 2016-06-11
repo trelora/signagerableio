@@ -22,16 +22,17 @@ var renderContent = function(listingInfo){
     window.setTimeout(function(){pullSlides();}, 10000);
   } else {
     renderSign(0, listingInfo, renderSign);
+    console.log(listingInfo);
   }
 };
 
 var renderSign = function(signNumber, listingInfo, callback) {
-  if(signNumber == listingInfo.length -1) {
+  if(signNumber == listingInfo.signs.length -1) {
     pullSlides();
   } else {
-    var sign = listingInfo[signNumber];
+    var sign = listingInfo.signs[signNumber];
     $("#device-content").html("<p>" + sign.title + "</p><p>" + sign.ribbon_color + "</p><p>" + sign.ribbon + "</p><p>" + sign.subtitle + "</p>" + "<img src='" + sign.best_large_image +"'>"
     );
-    window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, 1000);
+    window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
   }
 };
