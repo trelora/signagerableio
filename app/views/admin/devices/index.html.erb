@@ -1,4 +1,13 @@
 <h1>Devices</h1>
+
+<%= form_for([:admin, @devices.display]) do |f| %>
+  <%= f.label :time %>
+  <%= f.text_field :time %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<p>Current Slide Time: <%= @devices.time %> second(s) per slide</p>
+
 <table>
   <tr>
     <th>ID</th>
@@ -8,7 +17,7 @@
     <th>Last Visited</th>
     <th>Delete Device</th>
   </tr>
-  <% @devices.each do |device| %>
+  <% @devices.all.each do |device| %>
     <tr>
       <td><%= link_to device.id, edit_admin_device_path(device.id) %></td>
       <td><%= device.device_code %></td>

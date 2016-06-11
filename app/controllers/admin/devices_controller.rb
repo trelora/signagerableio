@@ -1,6 +1,6 @@
 class Admin::DevicesController < ApplicationController
   def index
-    @devices = Device.all
+    @devices = AdminPresenter.new
   end
 
   def edit

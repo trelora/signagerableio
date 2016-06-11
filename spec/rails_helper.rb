@@ -79,6 +79,7 @@ RSpec.configure do |config|
 
    config.before(:each) do
      DatabaseCleaner.strategy = :transaction
+     Display.create(time: 1)
    end
 
    config.before(:each, :js => true) do
