@@ -31,8 +31,11 @@ var renderSign = function(signNumber, listingInfo, callback) {
     pullSlides();
   } else {
     var sign = listingInfo.signs[signNumber];
-    $("#device-content").html("<p>" + sign.title + "</p><p>" + sign.ribbon_color + "</p><p>" + sign.ribbon + "</p><p>" + sign.subtitle + "</p>" + "<img src='" + sign.best_large_image +"'>"
-    );
-    window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
+    $("#device-content").fadeOut("slow", function(){
+      $("#device-content").html("<p>"+ sign.title + "</p><p>" + sign.ribbon_color + "</p><p>" + sign.ribbon + "</p><p>" + sign.subtitle + "</p>" + "<img src='" + sign.best_large_image +"'>");
+      $("#device-content").fadeIn("slow", function(){
+        window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
+      });
+    });
   }
 };
