@@ -13,7 +13,6 @@ gem 'figaro'
 gem 'simplecov', :require => false, :group => :test
 gem 'faraday'
 gem 'responders', '~> 2.0'
-gem "capybara-webkit"
 gem "selenium-webdriver"
 
 # Use ActiveModel has_secure_password
@@ -24,6 +23,7 @@ gem "selenium-webdriver"
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara'
+  gem "capybara-webkit"
   gem 'launchy'
   gem 'byebug'
   gem 'pry-rails'
