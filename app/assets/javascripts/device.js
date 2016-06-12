@@ -13,8 +13,7 @@ var pullSlides = function() {
 
 var renderContent = function(listingInfo){
   var deviceCode = $("#device-content").attr('class');
-
-  if(listingInfo.signs.error){
+  if($.isEmptyObject(listingInfo.signs)){
     $("#device-content").html("<h1>Screen ID: " + deviceCode + "</h1>");
     window.setTimeout(function(){pullSlides();}, 10000);
   } else {
