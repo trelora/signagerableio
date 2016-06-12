@@ -12,6 +12,7 @@ gem 'unicorn'
 gem 'figaro'
 gem 'simplecov', :require => false, :group => :test
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'responders', '~> 2.0'
 gem "selenium-webdriver"
 
