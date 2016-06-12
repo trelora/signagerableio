@@ -26,4 +26,5 @@ ActiveRecord::Schema.define(version: 20160611191235) do
   create_table "displays", force: :cascade do |t|
     t.integer "time"
   end
+
 end
