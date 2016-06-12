@@ -32,7 +32,8 @@ var renderSign = function(signNumber, listingInfo, callback) {
   } else {
     var sign = listingInfo.signs[signNumber];
     $("#device-content").fadeOut("slow", function(){
-      $("#device-content").html("<p>"+ sign.title + "</p><p>" + sign.ribbon_color + "</p><p>" + sign.ribbon + "</p><p>" + sign.subtitle + "</p>" + "<img src='" + sign.best_large_image +"'>");
+      $("#device-content").html("<div class='ribbon' style='background-color: " + sign.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + sign.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + sign.best_large_image + "\");background-size: cover;'>" + "<p>" + sign.title + "</p>" + "<p>" + sign.subtitle + "</p>" + "</div>"
+      );
       $("#device-content").fadeIn("slow", function(){
         window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
       });
