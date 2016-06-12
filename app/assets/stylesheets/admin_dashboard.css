@@ -1,7 +1,14 @@
+/*
+ *= require_self
+*/
+
+body {
+  background-image: url("dark_embroidery.png");
+}
+
 #admin-dashboard {
   color: #fff;
 }
-
 
 #trelora-logo {
   margin-top: 50px;

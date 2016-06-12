@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "When device has a role and multiple signs", :js => true do
   scenario "the device cycles through the signs for that role" do
-    skip
+    skip("Javascript timeout due to intentional infinite loop for device")
     service = TreloraServices.new
     listing = service.house_listing("comingsoon", 2)[1]
 

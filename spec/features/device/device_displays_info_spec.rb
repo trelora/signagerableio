@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "When device has a role", :js => true do
   scenario "the device displays info for its given role" do
+    skip("Javascript timeout due to intentional infinite loop for device")
     service = TreloraServices.new
     listing = service.house_listing("comingsoon", 1).first
 

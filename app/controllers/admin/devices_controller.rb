@@ -1,4 +1,6 @@
 class Admin::DevicesController < ApplicationController
+  layout "admin"
+
   def index
     @devices = AdminPresenter.new
   end
