@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: 'Lato', sans-serif;
+  background-image: url('trelora.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.ribbon {
+  text-align: center;
+  font-size: 5em;
+  font-weight: bold;
+  color: white;
+  margin-top: 0;
+  padding-top: 10px;
+  position: absolute;
+  left: -250px;
+  top: 80px;
+  width: 1200px;
+  transform: rotate(-25deg);
+
+  .design-line {
+    margin-top: 0;
+    background-color: black;
+    width: 100%;
+    height: 10px;
+  }
+
+  p {
+    padding-top: 30px;
+    margin: 0;
+  }
+}
+
+#title {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  font-size: 5em;
+  font-weight: 100;
+  color: white;
+  width: 100%;
+  background-color: black;
+  padding: 0;
+
+  p {
+    padding: 20px;
+    margin: 0;
+  }
+}
