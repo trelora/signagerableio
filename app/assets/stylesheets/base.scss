@@ -1,18 +1,17 @@
-html {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
 body {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  background-image: url('trelora.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .ribbon {
   text-align: center;
-  font-size: 4em;
+  font-size: 5em;
   font-weight: bold;
   color: white;
   margin-top: 0;
@@ -20,7 +19,7 @@ body {
   position: absolute;
   left: -250px;
   top: 80px;
-  width: 1000px;
+  width: 1200px;
   transform: rotate(-25deg);
 
   .design-line {
@@ -36,6 +35,19 @@ body {
   }
 }
 
-p {
-  margin-top: 0;  
+#title {
+  position: absolute;
+  bottom: 0;
+  text-align: right;
+  font-size: 5em;
+  font-weight: 100;
+  color: white;
+  width: 100%;
+  background-color: black;
+  padding: 0;
+
+  p {
+    padding: 20px;
+    margin: 0;
+  }
 }

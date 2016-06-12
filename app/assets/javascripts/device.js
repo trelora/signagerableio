@@ -32,7 +32,7 @@ var renderSign = function(signNumber, listingInfo, callback) {
   } else {
     var sign = listingInfo.signs[signNumber];
     $("#device-content").fadeOut("slow", function(){
-      $("#device-content").html("<div class='ribbon' style='background-color: " + sign.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + sign.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + sign.best_large_image + "\");background-size: cover;'>" + "<p>" + sign.title + "</p>" + "<p>" + sign.subtitle + "</p>" + "</div>"
+      $("#device-content").html("<div class='ribbon' style='background-color: " + sign.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + sign.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + sign.best_large_image + "\");background-size: cover;'>" + "<div id='title'>"+ "<p>" + sign.title.toUpperCase().split(',')[0] + "</p>" + "</div>" + "</div>"
       );
       $("#device-content").fadeIn("slow", function(){
         window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
