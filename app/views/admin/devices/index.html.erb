@@ -9,16 +9,19 @@
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide
   </p>
 
-    <%= form_for([:admin, @devices.display]) do |f| %>
-      <div class="form-group text-center">
-        <%= f.label :time, class: 'timer-format' %>
-        <%= f.text_field :time, class: 'form-control' %>
-        <%= f.submit "Submit", class: 'timer-format', id: 'time-submit' %>
-      </div>
-    <% end %>
+  <%= form_for([:admin, @devices.display]) do |f| %>
+    <div class="form-group text-center">
+      <%= f.label :time, class: 'timer-format' %>
+      <%= f.text_field :time, class: 'form-control' %>
+      <%= f.submit "Submit", class: 'timer-format', id: 'time-submit' %>
+    </div>
+  <% end %>
 
+  <div class="text-center" id="tv-icon">
+    <i class="fa fa-television" aria-hidden="true"></i>
+  </div>
 
-  <table>
+  <table class="table" id="admin-table">
     <tr>
       <th>ID</th>
       <th>Code</th>

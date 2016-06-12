@@ -31,8 +31,18 @@
 }
 
 #time-submit {
+  margin-top: 20px;
   background-color: #96C93D;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+}
+
+#admin-table {
+  margin-top: 20px;
+}
+
+
+#tv-icon {
+  font-size: 50px;
 }
