@@ -12,7 +12,8 @@ class TreloraServices
       req.params["api_key"] = ENV["trelora_api_key"]
     end
 
-    parse(response)
+    results = parse(response)
+    filter(results)
   end
 
   def get_roles
@@ -30,5 +31,24 @@ class TreloraServices
 
     def parse(response)
       JSON.parse(response.body, symbolize_names: true)
+    end
+
+    def filter(results)
+      results.select do |result|
+        if result == :error
+          false
+        elsif result[:best_large_image] == nil
+          false
+        else
+          prefix = result[:best_large_image].split("/")[0..2].join("/")
+          final  = "/" + result[:best_large_image].split("/")[3..-1].join("/").gsub(" ", "%20")
+          image = Faraday.new(prefix) { |b|
+            b.use FaradayMiddleware::FollowRedirects
+            b.adapter :net_http
+          }
+          status = image.head(final).status
+          status < 400
+        end
+      end
     end
 end
