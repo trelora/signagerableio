@@ -24,7 +24,7 @@ RSpec.describe TreloraServices do
       trelora      = service.house_listing('comingsoon')
       first_result = trelora.first
 
-      expect(trelora.count).to eq(20)
+      expect(trelora.count).to eq(21)
       expect(first_result[:role]).to eq("Coming Soon")
       expect(first_result[:ribbon]).to eq("Coming Soon!")
       expect(first_result[:ribbon_color]).to eq("#99cc77")
