@@ -1,7 +1,5 @@
 $(document).ready(function(){
-  if($("#device-content")) {
-    pullSlides();
-  }
+  pullSlides();
 });
 
 var pullSlides = function() {
@@ -12,7 +10,6 @@ var pullSlides = function() {
     success: renderContent
   });
 };
-
 
 var renderContent = function(listingInfo){
   var deviceCode = $("#device-content").attr('class');

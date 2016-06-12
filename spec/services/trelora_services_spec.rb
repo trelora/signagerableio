@@ -8,7 +8,7 @@ RSpec.describe TreloraServices do
       trelora      = service.house_listing('sold')
       first_result = trelora.first
 
-      expect(trelora.count).to eq(40)
+      expect(trelora.count).to eq(33)
       expect(first_result[:role]).to eq("Sold")
       expect(first_result[:ribbon]).to eq("Sold!")
       expect(first_result[:ribbon_color]).to eq("#428bca")
@@ -24,14 +24,14 @@ RSpec.describe TreloraServices do
       trelora      = service.house_listing('comingsoon')
       first_result = trelora.first
 
-      expect(trelora.count).to eq(23)
+      expect(trelora.count).to eq(20)
       expect(first_result[:role]).to eq("Coming Soon")
       expect(first_result[:ribbon]).to eq("Coming Soon!")
       expect(first_result[:ribbon_color]).to eq("#99cc77")
-      expect(first_result[:title]).to eq("1658 Fairfax St ,  Denver, 80220")
+      expect(first_result[:title]).to eq("1499 Blake St Unit 3L,  Denver, 80202")
       expect(first_result[:subtitle]).to eq("Ask for more information")
-      expect(first_result[:best_large_image]).to eq("https://trelora.smugmug.com/1658-Fairfax/i-PHczN4g/0/X2/IMG_2622_3_4-X2.jpg")
-      expect(first_result[:images].count).to eq(46)
+      expect(first_result[:best_large_image]).to eq("https://trelora.smugmug.com/1499-Blake-St-Unit-3L/i-pmXPcMm/0/X2/IS1fovc14evo0k0000000000-X2.jpg")
+      expect(first_result[:images].count).to eq(29)
     end
   end
 end

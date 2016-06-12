@@ -1,4 +1,5 @@
 class Admin::DisplayController < ApplicationController
+  layout "admin"
   def update
     Display.find(params[:id]).update(display_params)
     redirect_to admin_devices_path

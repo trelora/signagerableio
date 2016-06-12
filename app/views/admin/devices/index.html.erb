@@ -1,30 +1,45 @@
-<h1>Devices</h1>
+<div id="admin-dashboard">
+  <div class="text-center">
+    <%= image_tag "trelora_logo.png", id: "trelora-logo" %>
+  </div>
 
-<%= form_for([:admin, @devices.display]) do |f| %>
-  <%= f.label :time %>
-  <%= f.text_field :time %>
-  <%= f.submit "Submit" %>
-<% end %>
+  <h1 class="text-center" id="device-title">Devices</h1>
 
-<p>Current Slide Time: <%= @devices.time %> second(s) per slide</p>
+  <p id="timer">
+    <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide
+  </p>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Code</th>
-    <th>Nickname</th>
-    <th>Role</th>
-    <th>Last Visited</th>
-    <th>Delete Device</th>
-  </tr>
-  <% @devices.all.each do |device| %>
-    <tr>
-      <td><%= link_to device.id, edit_admin_device_path(device.id) %></td>
-      <td><%= device.device_code %></td>
-      <td><%= device.nickname %></td>
-      <td><%= device.role %></td>
-      <td><%= formatted_time(device.last_visit) %></td>
-      <td><%= link_to "Delete", admin_device_path(device.id), method: :delete %></td>
-    </tr>
+  <%= form_for([:admin, @devices.display]) do |f| %>
+    <div class="form-group text-center">
+      <%= f.label :time, class: 'timer-format' %>
+      <%= f.text_field :time, class: 'form-control' %>
+      <%= f.submit "Submit", class: 'timer-format', id: 'time-submit' %>
+    </div>
   <% end %>
-</table>
+
+  <div class="text-center" id="tv-icon">
+    <i class="fa fa-television" aria-hidden="true"></i>
+  </div>
+
+  <table class="table" id="admin-table">
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Nickname</th>
+      <th>Role</th>
+      <th>Last Visited</th>
+      <th>Delete Device</th>
+    </tr>
+    <% @devices.all.each do |device| %>
+      <tr>
+        <td><%= link_to device.id, edit_admin_device_path(device.id) %></td>
+        <td><%= device.device_code %></td>
+        <td><%= device.nickname %></td>
+        <td><%= device.role %></td>
+        <td><%= formatted_time(device.last_visit) %></td>
+        <td><%= link_to "Delete", admin_device_path(device.id), method: :delete %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>
