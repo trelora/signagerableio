@@ -40,14 +40,12 @@ class TreloraServices
         elsif result[:best_large_image] == nil
           false
         else
-          prefix = result[:best_large_image].split("/")[0..2].join("/")
-          final  = "/" + result[:best_large_image].split("/")[3..-1].join("/").gsub(" ", "%20")
-          image = Faraday.new(prefix) { |b|
-            b.use FaradayMiddleware::FollowRedirects
-            b.adapter :net_http
-          }
-          status = image.head(final).status
-          status < 400
+          dimensions = FastImage.size(result[:best_large_image])
+          if dimensions == nil || dimensions[0] < dimensions[1]
+            false
+          else
+            true
+          end
         end
       end
     end
