@@ -1,9 +1,9 @@
-<div id="admin-dashboard">
+
   <div class="text-center">
     <%= image_tag "trelora_logo.png", id: "trelora-logo" %>
   </div>
 
-  <h1 class="text-center" id="device-title">Devices</h1>
+  <h1 class="text-center" id="titles">Devices</h1>
 
   <p id="timer">
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide
@@ -11,9 +11,9 @@
 
   <%= form_for([:admin, @devices.display]) do |f| %>
     <div class="form-group text-center">
-      <%= f.label :time, class: 'timer-format' %>
+      <%= f.label :time, class: 'font-format' %>
       <%= f.text_field :time, class: 'form-control' %>
-      <%= f.submit "Submit", class: 'timer-format', id: 'time-submit' %>
+      <%= f.submit "Submit", class: 'font-format', id: 'button-submit' %>
     </div>
   <% end %>
 
@@ -41,5 +41,3 @@
       </tr>
     <% end %>
   </table>
-
-</div>
