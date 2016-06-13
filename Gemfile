@@ -12,9 +12,9 @@ gem 'unicorn'
 gem 'figaro'
 gem 'simplecov', :require => false, :group => :test
 gem 'faraday'
-gem 'faraday_middleware'
 gem 'responders', '~> 2.0'
 gem "selenium-webdriver"
+gem 'fastimage'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
