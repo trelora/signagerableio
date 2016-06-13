@@ -1,14 +1,30 @@
-<h1>Edit Device</h1>
+<h1 class="text-center" id="titles">Edit Device</h1>
 <%= form_for [:admin, @device] do |f| %>
-  <%= f.label :device_code %>
-  <%= f.text_field :device_code %>
-  <%= f.label :nickname %>
-  <%= f.text_field :nickname %>
-  <%= f.label :role %>
+
+  <div class="text-center">
+    <%= f.label :device_code, class: 'font-format' %>
+    <div class="form-group">
+      <%= f.text_field :device_code, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.label :nickname, class: 'font-format' %>
+    <div class="form-group">
+      <%= f.text_field :nickname, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <%= f.label :role, class: 'font-format' %>
+    <div class="form-group">
+      <%= f.select(:role, options_for_select(Device.roles), {}, {class: "form-control"}) %>
+    </div>
+  </div>
 
 
-  <%= f.select(:role, options_for_select(Device.roles)) %>
+    <div class="form-group text-center">
+      <%= f.submit "Submit", class: 'font-format', id: 'button-submit' %>
+    </div>
 
-
-  <%= f.submit "Submit" %>
 <% end %>

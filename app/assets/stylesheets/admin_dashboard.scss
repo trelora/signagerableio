@@ -4,6 +4,7 @@
 
 body {
   background-image: image-url("dark_embroidery.png");
+  color: #fff;
 }
 
 #admin-dashboard {
@@ -30,14 +31,14 @@ body {
   margin-bottom: 10px;
 }
 
-.timer-format {
+.font-format {
   font-size: 30px;
   margin-top: 10px;
   font-weight: lighter;
   letter-spacing: 5px;
 }
 
-#time-submit {
+#button-submit {
   margin-top: 20px;
   background-color: #96C93D;
   -moz-border-radius: 4px;
@@ -52,4 +53,13 @@ body {
 
 #tv-icon {
   font-size: 50px;
+}
+
+#titles {
+  margin-top: 30px;
+  font-size: 60px;
+  font-weight: lighter;
+  letter-spacing: 5px;
+  border-bottom: solid 1px #fff;
+  margin-bottom: 50px;
 }
