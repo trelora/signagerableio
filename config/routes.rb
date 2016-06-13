@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/update_slides', to: "slides#update", as: :refresh_slides
     resources :devices, only: [:index, :edit, :update, :destroy]
     resources :display, only: [:update]
   end
