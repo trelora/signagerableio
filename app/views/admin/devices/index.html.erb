@@ -5,11 +5,13 @@
 
   <h1 class="text-center" id="titles">Devices</h1>
 
-  <p id="timer">
-    Refresh: Use button below to refresh the slides from the Trelora Signage API.
+  <p id="refresh">
+    Refresh: Use button below to refresh or setup the slides and roles from the Trelora Signage API.
   </p>
 
-  <%= link_to "Refresh Slides", admin_refresh_slides_path %>
+  <div class="text-center">
+    <%= button_to "Refresh", admin_refresh_slides_path, class: 'font-format', id: "button-refresh", method: :get %>
+  </div>
 
   <p id="timer">
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide

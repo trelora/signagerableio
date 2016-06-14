@@ -8,9 +8,4 @@ class Device < ActiveRecord::Base
     end
     device_code
   end
-
-  def self.roles
-    service = TreloraServices.new
-    service.get_roles
-  end
 end
