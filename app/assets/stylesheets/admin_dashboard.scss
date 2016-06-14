@@ -31,11 +31,27 @@ body {
   margin-bottom: 10px;
 }
 
+#refresh {
+  font-size: 30px;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
 .font-format {
   font-size: 30px;
   margin-top: 10px;
   font-weight: lighter;
   letter-spacing: 5px;
+}
+
+#button-refresh {
+  margin-top: 20px;
+  background-color: #96C93D;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 #button-submit {
