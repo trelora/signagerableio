@@ -6,6 +6,12 @@
   <h1 class="text-center" id="titles">Devices</h1>
 
   <p id="timer">
+    Refresh: Use button below to refresh the slides from the Trelora Signage API.
+  </p>
+
+  <%= link_to "Refresh Slides", admin_refresh_slides_path %>
+
+  <p id="timer">
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide
   </p>
 

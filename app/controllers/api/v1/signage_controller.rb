@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def index
-        response = {time: time, signs: signs}
+        response = {time: time, signs: JSON.parse(signs)}
         respond_with JSON.generate(response)
       end
 
@@ -14,11 +14,8 @@ module Api
         end
 
         def signs
-          service = TreloraServices.new
-
           role = Device.find_by(device_code: cookies[:device_code]).role
-
-          service.house_listing(role)
+          Slide.where(api_role: role).to_json
         end
     end
   end
