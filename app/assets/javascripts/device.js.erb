@@ -2,7 +2,7 @@ $(document).ready(function(){
   pullSlides();
 });
 
-var pullSlides = function() {
+function pullSlides() {
   $.ajax({
     method: "GET",
     url: "/api/v1/signage",
@@ -11,29 +11,58 @@ var pullSlides = function() {
   });
 };
 
-var renderContent = function(listingInfo){
-  var deviceCode = $("#device-content").attr('class');
+function renderContent (listingInfo){
   if($.isEmptyObject(listingInfo.signs)){
-    $("#device-content").html("<h1 id='device-code'>Screen ID: " + deviceCode + "</h1>");
-    window.setTimeout(function(){pullSlides();}, 10000);
+    showDeviceId();
   } else {
-    renderSign(0, listingInfo, renderSign);
-    console.log(listingInfo);
+    $("body").css("background-image", "none")
+    renderSlides(0, listingInfo.signs, listingInfo.time);
   }
-};
+}
 
-var renderSign = function(signNumber, listingInfo, callback) {
-  if(signNumber == listingInfo.signs.length -1) {
-    pullSlides();
+function showDeviceId() {
+  var deviceCode = $("#device-content").attr('class');
+  $(".second").html("<h1 id='device-code'>Screen ID: " + deviceCode + "</h1>");
+  window.setTimeout(function(){pullSlides();}, 10000);
+}
+
+function renderSlides(nextSlide, slides, timeout) {
+  var divs = determineDivs();
+  currentDiv = divs[0];
+  nextDiv    = divs[1];
+
+  renderSlideIn(nextDiv, slides[nextSlide]);
+
+  $(nextDiv).fadeIn(3000)
+  $(currentDiv).fadeOut(3000, function() {
+    window.setTimeout(function(){
+      if(nextSlide == slides.length -1) {
+        pullSlides();
+      } else {
+        renderSlides(nextSlide + 1, slides, timeout);
+      }
+    }, timeout);
+  })
+}
+
+function determineDivs() {
+  var currentDiv = "";
+  var nextDiv = "";
+
+  if($(".first").css("display") == "none"){
+    currentDiv = ".second";
+    nextDiv = ".first";
   } else {
-    var sign = listingInfo.signs[signNumber];
-    $("#device-content").fadeOut("slow", function(){
-      var housePath = '<%= asset_path "trelora_house.png" %>';
-      $("#device-content").html("<div class='ribbon' style='background-color: " + sign.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + sign.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + sign.best_large_image + "\");background-size: cover;'>" + "<div id='title'>"+ "<img src='" + housePath + "'>" +"<p>" + sign.title.toUpperCase().split(',')[0] + "</p>" + "</div>" + "<div id='underline'></div>" + "</div>"
-      );
-      $("#device-content").fadeIn("slow", function(){
-        window.setTimeout(function(){callback(signNumber + 1, listingInfo, renderSign);}, listingInfo.time);
-      });
-    });
+    currentDiv = ".first";
+    nextDiv = ".second";
   }
-};
+
+  return [currentDiv, nextDiv];
+}
+
+function renderSlideIn(nextDiv, slide) {
+  var housePath = '<%= asset_path "trelora_house.png" %>';
+
+  $(nextDiv).html("<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + slide.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + slide.best_large_image + "\");background-size: cover;'>" + "</div>" + "<div id='title'>" + "<img src='" + housePath + "'>" +"<p>" + slide.title.toUpperCase().split(',')[0] + "</p>" + "</div>" + "<div id='underline'></div>" + "</div>"
+  );
+}

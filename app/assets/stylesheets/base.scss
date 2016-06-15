@@ -17,6 +17,22 @@ body {
   font-weight: 200;
 }
 
+.first {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.second {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
 .ribbon {
   text-align: center;
   font-size: 3.85em;
