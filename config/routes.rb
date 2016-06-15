@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   get '/', to: "devices#create"
   get '/show', to: "devices#show", as: :device
 
+  get "/login",     to: "sessions#new"
+  post "/login",    to: "sessions#create"
+
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
       resources :signage, only: :index

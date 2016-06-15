@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "When an admin clicks on a device" do
+  let(:user) {User.create(email: "admin@email.com", password: "password")}
+
   it "they are able to give the device a nickname" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     device = create(:device)
 
     visit '/admin/devices'
@@ -14,6 +18,8 @@ RSpec.describe "When an admin clicks on a device" do
   end
 
   it "they are able to give the device a role" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     Role.update_roles
     device = create(:device)
 
@@ -28,6 +34,8 @@ RSpec.describe "When an admin clicks on a device" do
   end
 
   it "they are able to set the device code" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     device = create(:device)
 
     visit '/admin/devices'

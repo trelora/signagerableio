@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1 id="titles">Login</h1>
+
+  <%= form_for(:session, url: login_path) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, class: 'font-format' %>
+      <%= f.text_field :email, class: 'form-control' %>
+
+      <%= f.label :password, class: 'font-format' %>
+      <%= f.password_field :password, class: 'form-control'%>
+
+      <%= f.submit "Login", class: 'font-format', id: 'button-submit' %>
+    </div>
+  <% end %>
+</div>

@@ -3,6 +3,9 @@ require 'rails_helper'
 
 RSpec.describe "When the admin visits the device#index" do
   it "they can set the time per slide" do
+    user = User.create(email: "admin@email.com", password: "password")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     display = Display.create(time: 1)
 
     visit '/admin/devices'

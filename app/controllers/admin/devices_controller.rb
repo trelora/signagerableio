@@ -1,5 +1,6 @@
 class Admin::DevicesController < ApplicationController
   layout "admin"
+  before_action :authorize!
 
   def index
     @devices = AdminPresenter.new
