@@ -1,5 +1,7 @@
 class Admin::DisplayController < ApplicationController
   layout "admin"
+  before_action :authorize!
+
   def update
     Display.find(params[:id]).update(display_params)
     redirect_to admin_devices_path
