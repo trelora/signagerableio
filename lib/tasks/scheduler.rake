@@ -1,6 +1,6 @@
 desc "This task is called by the Heroku scheduler add-on"
-task :update_feed => :environment do
+task :update_slides => :environment do
   puts "Updating slides and roles..."
-  Admin::SlidesController.new.update
+  Admin::SlidesController.new.background_update
   puts "done."
 end
