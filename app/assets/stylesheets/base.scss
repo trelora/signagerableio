@@ -3,14 +3,14 @@ body {
   padding: 0;
   border: 0;
   font-family: 'Lato', sans-serif;
-  background-image: image-url("trelora.png");
+  background-image: image-url("static-slide.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
 }
 
 #device-code {
-  color: #000000;
+  color: white;
   position: absolute;
   bottom: 0;
   left: 100px;
