@@ -16,10 +16,7 @@ Signagerableio is a project assigned by [Trelora](http://www.trelora.com/) (a Re
 -  Heroku scheduler that calls on a rake task that "refreshes" the types of roles and slides that will be displayed on the devices each night
 
 ## Demo
-<hr>
-<p align="center">
 ![Admin Dashboard](https://media.giphy.com/media/xT8qBbxkfCYDMryhi0/giphy.gif)
 ![Sold Properties](https://media.giphy.com/media/3o6gEgag4Txrf1mZdC/giphy.gif)
 ![Coming Soon Properties](https://media.giphy.com/media/xT8qBfsC1njLXXfcvS/giphy.gif)
-</p>
-<hr>
+
