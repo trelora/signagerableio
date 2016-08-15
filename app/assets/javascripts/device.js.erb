@@ -11,11 +11,10 @@ function pullSlides() {
   });
 };
 
-function renderContent (listingInfo){
-  if($.isEmptyObject(listingInfo.signs)){
+function renderContent(listingInfo) {
+  if($.isEmptyObject(listingInfo.signs)) {
     showDeviceId();
   } else {
-    $("body").css("background-image", "none");
     renderSlides(0, listingInfo.signs, listingInfo.time);
   }
 }
@@ -23,46 +22,41 @@ function renderContent (listingInfo){
 function showDeviceId() {
   var deviceCode = $("#device-content").attr('class');
   $(".second").html("<h1 id='device-code'>Screen ID: " + deviceCode + "</h1>");
-  window.setTimeout(function(){pullSlides();}, 10000);
 }
 
-function renderSlides(nextSlide, slides, timeout) {
-  var divs = determineDivs();
-  var currentDiv = divs[0];
-  var nextDiv    = divs[1];
-
-  renderSlideIn(nextDiv, slides[nextSlide]);
-
-  $(nextDiv).fadeIn(3000, function() {
-    $(currentDiv).hide();
-    window.setTimeout(function(){
-      if(nextSlide == slides.length -1) {
-        pullSlides();
-      } else {
-        renderSlides(nextSlide + 1, slides, timeout);
-      }
-    }, timeout);
-  })
-}
-
-function determineDivs() {
-  var currentDiv = "";
-  var nextDiv = "";
-
-  if($(".first").css("display") == "none"){
-    currentDiv = ".second";
-    nextDiv = ".first";
+function renderSlides(i, slides, timeout) {
+  var nextSlide = getSlide(slides[i]);
+  if ($('.second').is(":visible")) {
+    $('.first').html(nextSlide);
+    $('.second').fadeOut(3000, repeat);
   } else {
-    currentDiv = ".first";
-    nextDiv = ".second";
+    $('.second').html(nextSlide).fadeIn(3000, repeat);
   }
-
-  return [currentDiv, nextDiv];
 }
 
-function renderSlideIn(nextDiv, slide) {
-  var housePath = '<%= asset_path "trelora_house.png" %>';
+function repeat(i, slides, timeout) {
+  window.setTimeout(function(){
+    if(i == slides.length -1) {
+      pullSlides();
+    } else {
+      renderSlides(i + 1, slides, timeout);
+    }
+  }, timeout);
+}
 
-  $(nextDiv).html("<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' " + ">" + "<div class='design-line'></div>" + "<p>" + slide.ribbon.toUpperCase() + "</p>"  + "</div>" + "<div style='height: 100vh;width: 100vw;background-image: url(\"" + slide.best_large_image + "\");background-size: cover;'>" + "</div>" + "<div id='title'>" + "<img src='" + housePath + "'>" +"<p>" + slide.title.toUpperCase().split(',')[0] + "</p>" + "</div>" + "<div id='underline'></div>" + "</div>"
+
+function getSlide(slide) {
+  var housePath = '<%= asset_path "trelora_house.png" %>';
+  return (
+    "<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' >" +
+      "<div class='design-line'></div>" +
+      "<p>" + slide.ribbon.toUpperCase() + "</p>" +
+    "</div>" +
+    "<div style='height: 100vh;width: 100vw;background-image: url(\"" + slide.best_large_image + "\");background-size: cover;'></div>" +
+    "<div id='title'>" +
+      "<img src='" + housePath + "'/>" +
+      "<p>" + slide.title.toUpperCase().split(',')[0] + "</p>" +
+    "</div>" +
+    "<div id='underline'></div>"
   );
 }
