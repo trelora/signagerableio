@@ -22,7 +22,6 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  display: none;
   width: 100vw;
   height: 100vh;
 }
@@ -34,6 +33,11 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
+  display: none;
+  -webkit-transition: opacity 3000ms ease-in-out;
+  -moz-transition: opacity 3000ms ease-in-out;
+  -o-transition: opacity 3000ms ease-in-out;
+  transition: opacity 3000ms ease-in-out;
 }
 
 .ribbon {

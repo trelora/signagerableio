@@ -29,9 +29,9 @@ function renderSlides(i, slides, timeout) {
   var cb = repeat.bind(null, i, slides, timeout);
   if ($('.second').is(":visible")) {
     $('.first').html(nextSlide);
-    $('.second').fadeOut(3000, cb);
+    $('.second').css({opacity: 0}).one('transitionEnd', cb);
   } else {
-    $('.second').html(nextSlide).fadeIn(3000, cb);
+    $('.second').html(nextSlide).css({opacity: 100}).one('transitionEnd', cb);
   }
 }
 
