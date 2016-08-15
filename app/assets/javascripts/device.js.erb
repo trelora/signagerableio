@@ -15,7 +15,7 @@ function renderContent (listingInfo){
   if($.isEmptyObject(listingInfo.signs)){
     showDeviceId();
   } else {
-    $("body").css("background-image", "none")
+    $("body").css("background-image", "none");
     renderSlides(0, listingInfo.signs, listingInfo.time);
   }
 }
@@ -28,13 +28,13 @@ function showDeviceId() {
 
 function renderSlides(nextSlide, slides, timeout) {
   var divs = determineDivs();
-  currentDiv = divs[0];
-  nextDiv    = divs[1];
+  var currentDiv = divs[0];
+  var nextDiv    = divs[1];
 
   renderSlideIn(nextDiv, slides[nextSlide]);
 
-  $(nextDiv).fadeIn(3000)
-  $(currentDiv).fadeOut(3000, function() {
+  $(nextDiv).fadeIn(3000, function() {
+    $(currentDiv).hide();
     window.setTimeout(function(){
       if(nextSlide == slides.length -1) {
         pullSlides();
