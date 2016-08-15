@@ -27,12 +27,15 @@ function showDeviceId() {
 function renderSlides(i, slides, timeout) {
   var nextSlide = getSlide(slides[i]);
   var cb = repeat.bind(null, i, slides, timeout);
-  if ($('.second').is(":visible")) {
+
+  if ($('.second').css('opacity') > 0) {
     $('.first').html(nextSlide);
-    $('.second').css({opacity: 0}).one('transitionEnd', cb);
+    $('.second').css({opacity: 0});
   } else {
-    $('.second').html(nextSlide).css({opacity: 100}).one('transitionEnd', cb);
+    $('.second').html(nextSlide).css({opacity: 100});
   }
+
+  $(document).one('transitionend', '.second', cb);
 }
 
 function repeat(i, slides, timeout) {
