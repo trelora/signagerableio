@@ -26,11 +26,12 @@ function showDeviceId() {
 
 function renderSlides(i, slides, timeout) {
   var nextSlide = getSlide(slides[i]);
+  var cb = repeat.bind(null, i, slides, timeout);
   if ($('.second').is(":visible")) {
     $('.first').html(nextSlide);
-    $('.second').fadeOut(3000, repeat);
+    $('.second').fadeOut(3000, cb);
   } else {
-    $('.second').html(nextSlide).fadeIn(3000, repeat);
+    $('.second').html(nextSlide).fadeIn(3000, cb);
   }
 }
 
