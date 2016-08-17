@@ -1,7 +1,7 @@
 class TreloraServices
 
   def initialize
-    @_connection = Faraday.new(:url => "http://api.mytrelora.com")
+    @_connection = Faraday.new(:url => ENV["trelora_base_url"])
   end
 
   def house_listing(role, limit = 40)
