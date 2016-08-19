@@ -21,7 +21,9 @@ body {
   top: 0;
   width: 100vw;
   height: 100vh;
+
 }
+
 
 .second {
   z-index: 20;
@@ -35,6 +37,12 @@ body {
   -moz-transition: opacity 3000ms ease-in-out;
   -o-transition: opacity 3000ms ease-in-out;
   transition: opacity 3000ms ease-in-out;
+}
+
+.imgbg {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
 
 .ribbon {
@@ -66,7 +74,7 @@ body {
   }
 }
 
-#title {
+.titlesection {
   position: absolute;
   bottom: 0;
   text-align: right;
@@ -74,8 +82,9 @@ body {
   font-weight: 200;
   color: white;
   width: 100%;
-  background-color: black;
+  background-color: rgba(0,0,0,0.75);
   padding: 6px 0 3px 0;
+
 
   p {
     padding-right: 17px;
