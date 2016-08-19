@@ -1,6 +1,19 @@
 $(document).ready(function(){
+  renderDefaultSlide();
   pullSlide();
 });
+
+function renderDefaultSlide() {
+  var defaultSlide = getSlide({
+    ribbon_color: "#428bca",
+    ribbon: "Saved $12,346",
+    best_large_image: '<%= asset_path "s_fundy_way.jpg" %>',
+    title: "Congratulations",
+    subtitle: "Scott of S Fundy Way"
+  });
+
+  $("body").append($('<div>').html(defaultSlide));
+}
 
 function pullSlide() {
   $.ajax({
