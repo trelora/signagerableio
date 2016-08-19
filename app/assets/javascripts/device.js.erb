@@ -37,17 +37,21 @@ function showDeviceId() {
 
 function renderSlide(slideData, timeout) {
   console.log(slideData);
-  var nextSlide = getSlide(slideData);
 
-  if ($('.second').css('opacity') > 0) {
-    $('.first').html(nextSlide);
-    $('.second').css({opacity: 0});
-  } else {
-    $('.second').html(nextSlide).css({opacity: 100});
-  }
+  preloadImage(slideData.best_large_image, function() {
 
-  $(document).one('transitionend', '.second', function() {
-    window.setTimeout(pullSlide, timeout);
+    var nextSlide = getSlide(slideData);
+
+    if ($('.second').css('opacity') > 0) {
+      $('.first').html(nextSlide);
+      $('.second').css({opacity: 0});
+    } else {
+      $('.second').html(nextSlide).css({opacity: 100});
+    }
+
+    $(document).one('transitionend', '.second', function() {
+      window.setTimeout(pullSlide, timeout);
+    });
   });
 }
 
@@ -67,4 +71,11 @@ function getSlide(slide) {
     "</div>" +
     "<div id='underline'></div>"
   );
+}
+
+
+function preloadImage(url, cb) {
+  var img = new Image();
+  img.onload = cb;
+  img.src = url;
 }
