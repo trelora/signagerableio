@@ -85,7 +85,6 @@ body {
   background-color: rgba(0,0,0,0.75);
   padding: 6px 0 3px 0;
 
-
   p {
     padding-right: 17px;
     margin: 0;
@@ -106,7 +105,16 @@ body {
   }
 }
 
-// #underline {
+.device-code {
+    position: absolute;
+    bottom: 0.5vw;
+    left: 100px;
+    z-index: 100;
+    font-size: 2vw;
+    color: rgba(255,255,255,0.3);
+}
+
+// .underline {
 //   height: 1px;
 //   width: 96%;
 //   background-color: #B0B0B0;

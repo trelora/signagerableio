@@ -10,7 +10,7 @@
   </p>
 
   <div class="text-center">
-    <%= button_to "Refresh", admin_refresh_slides_path, class: 'font-format', id: "button-refresh", method: :get %>
+    <%= button_to "Refresh", admin_refresh_slides_path, class: 'font-format button', id: "button-refresh", method: :get %>
   </div>
 
   <p id="timer">
@@ -21,9 +21,29 @@
     <div class="form-group text-center">
       <%= f.label :time, class: 'font-format' %>
       <%= f.text_field :time, class: 'form-control' %>
-      <%= f.submit "Submit", class: 'font-format', id: 'button-submit' %>
+      <%= f.submit "Submit", class: 'font-format button', id: 'button-submit' %>
     </div>
   <% end %>
+
+  <br />
+  <hr />
+  <br />
+
+
+  <div class="text-center">
+    <% if Display.last.show_device_codes %>
+      <p>
+        The device codes ARE currently being shown on the slides!
+      </p>
+      <%= button_to "Hide Codes on Devices", reveal_admin_devices_path, class: 'font-format button', id: "button-unreveal" %>
+    <% else %>
+      <p>
+        The device codes are NOT currently being shown.
+      </p>
+      <%= button_to "Reveal Codes on Devices", reveal_admin_devices_path, class: 'font-format button', id: "button-reveal" %>
+    <% end %>
+  </div>
+
 
   <div class="text-center" id="tv-icon">
     <i class="fa fa-television" aria-hidden="true"></i>

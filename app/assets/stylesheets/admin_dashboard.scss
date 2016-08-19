@@ -44,22 +44,28 @@ body {
   letter-spacing: 5px;
 }
 
-#button-refresh {
-  margin-top: 20px;
+.button {
   background-color: #96C93D;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   color: #fff;
+}
+
+#button-refresh {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
 #button-submit {
   margin-top: 20px;
-  background-color: #96C93D;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+}
+
+#button-reveal {
+  background-color: #c93;
+}
+#button-unreveal {
+  background-color: #c93;
 }
 
 #admin-table {

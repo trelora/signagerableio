@@ -1,4 +1,6 @@
+var deviceCode;
 $(document).ready(function(){
+  deviceCode = $("#device-content").data('device-code');
   renderDefaultSlide();
   pullSlide();
 });
@@ -37,23 +39,21 @@ function tryAgain(jqXHR, status, error) {
 
 function renderContent(listingInfo) {
   if($.isEmptyObject(listingInfo.sign)) {
-    showDeviceId();
+    window.setTimeout(pullSlide, 5000);  // try 5 seconds later
   } else {
-    renderSlide(listingInfo.sign, listingInfo.time);
+    renderSlide(listingInfo.sign, listingInfo.time, listingInfo.show_device_codes);
   }
 }
 
 function showDeviceId() {
-  var deviceCode = $("#device-content").attr('class');
+
   $(".second").html("<h1 id='device-code'>Screen ID: " + deviceCode + "</h1>");
 }
 
-function renderSlide(slideData, timeout) {
-  console.log(slideData);
-
+function renderSlide(slideData, timeout, show_device_codes) {
   preloadImage(slideData.best_large_image, function() {
 
-    var nextSlide = getSlide(slideData);
+    var nextSlide = getSlide(slideData, show_device_codes);
 
     if ($('.second').css('opacity') > 0) {
       $('.first').html(nextSlide);
@@ -69,7 +69,7 @@ function renderSlide(slideData, timeout) {
 }
 
 
-function getSlide(slide) {
+function getSlide(slide, show_device_codes) {
   var housePath = '<%= asset_path "trelora_house.png" %>';
   return (
     "<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' >" +
@@ -81,8 +81,9 @@ function getSlide(slide) {
       "<img src='" + housePath + "'/>" +
       "<p class='title'>" + slide.title + "</p>" +
       "<p class='subtitle'>" + slide.subtitle + "</p>" +
+      "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
     "</div>" +
-    "<div id='underline'></div>"
+    "<div class='underline'></div>"
   );
 }
 

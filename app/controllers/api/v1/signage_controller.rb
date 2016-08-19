@@ -7,7 +7,7 @@ module Api
 
         device = Device.find_by(device_code: cookies[:device_code])
         if device.blank?
-          redirect_to '/' # new device
+          device = create_device
         else
           device.seen!
         end
@@ -15,14 +15,22 @@ module Api
         role = device.role
         sign = Slide.where(api_role: role).order("RANDOM()").first.to_json
 
-        response = {time: time, sign: JSON.parse(sign)}
+        response = {
+          time: time,
+          show_device_codes: show_device_codes,
+          sign: JSON.parse(sign),
+        }
         respond_with JSON.generate(response)
       end
 
       private
 
       def time
-        Display.find(1).time * 1000
+        Display.last.time * 1000
+      end
+
+      def show_device_codes
+        Display.last.show_device_codes
       end
 
     end

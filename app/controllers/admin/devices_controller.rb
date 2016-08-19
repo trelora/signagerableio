@@ -24,6 +24,11 @@ class Admin::DevicesController < ApplicationController
     redirect_to admin_devices_path
   end
 
+  def reveal
+    Display.last.update_column(:show_device_codes, !Display.last.show_device_codes)
+    redirect_to admin_devices_path
+  end
+
   private
   def device_params
     params.require(:device).permit(:device_code, :nickname, :role)

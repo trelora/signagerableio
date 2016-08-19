@@ -5,7 +5,7 @@ class AdminPresenter
   end
 
   def display
-    Display.find(1)
+    Display.last
   end
 
   def time
