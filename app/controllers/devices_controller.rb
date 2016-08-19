@@ -1,6 +1,6 @@
 class DevicesController < ApplicationController
   def create
-    if cookies[:device_code].nil?
+    if cookies[:device_code].nil? || Device.find_by(device_code: cookies[:device_code]).blank?
       device = Device.new
       cookies.permanent[:device_code] = device.generate_device_code
     end
@@ -9,6 +9,10 @@ class DevicesController < ApplicationController
 
   def show
     @device = Device.find_by(device_code: cookies[:device_code])
-    @device.update(last_visit: Time.now.to_s)
+    if @device.present?
+      @device.seen!
+    else
+      redirect_to '/'
+    end
   end
 end
