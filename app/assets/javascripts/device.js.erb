@@ -1,21 +1,32 @@
 $(document).ready(function(){
-  pullSlides();
+  pullSlide();
 });
 
-function pullSlides() {
+function pullSlide() {
   $.ajax({
     method: "GET",
     url: "/api/v1/signage",
     dataType: "JSON",
-    success: renderContent
+    success: renderContent,
+    error: tryAgain
   });
 };
 
+function tryAgain(jqXHR, status, error) {
+  try {
+    console.warn("Error getting slides from server. Status:"+status+", Error:"+error.toString());
+  } catch(e) {
+    // just in case the console line above fails.
+  }
+
+  window.setTimeout(pullSlide, 5);  // try 5 seconds later
+}
+
 function renderContent(listingInfo) {
-  if($.isEmptyObject(listingInfo.signs)) {
+  if($.isEmptyObject(listingInfo.sign)) {
     showDeviceId();
   } else {
-    renderSlides(0, listingInfo.signs, listingInfo.time);
+    renderSlide(listingInfo.sign, listingInfo.time);
   }
 }
 
@@ -24,9 +35,9 @@ function showDeviceId() {
   $(".second").html("<h1 id='device-code'>Screen ID: " + deviceCode + "</h1>");
 }
 
-function renderSlides(i, slides, timeout) {
-  var nextSlide = getSlide(slides[i]);
-  var cb = repeat.bind(null, i, slides, timeout);
+function renderSlide(slideData, timeout) {
+  console.log(slideData);
+  var nextSlide = getSlide(slideData);
 
   if ($('.second').css('opacity') > 0) {
     $('.first').html(nextSlide);
@@ -35,17 +46,9 @@ function renderSlides(i, slides, timeout) {
     $('.second').html(nextSlide).css({opacity: 100});
   }
 
-  $(document).one('transitionend', '.second', cb);
-}
-
-function repeat(i, slides, timeout) {
-  window.setTimeout(function(){
-    if(i == slides.length -1) {
-      pullSlides();
-    } else {
-      renderSlides(i + 1, slides, timeout);
-    }
-  }, timeout);
+  $(document).one('transitionend', '.second', function() {
+    window.setTimeout(pullSlide, timeout);
+  });
 }
 
 

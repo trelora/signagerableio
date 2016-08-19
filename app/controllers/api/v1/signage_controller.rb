@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def index
-        response = {time: time, signs: JSON.parse(signs)}
+        response = {time: time, sign: JSON.parse(sign)}
         respond_with JSON.generate(response)
       end
 
@@ -13,9 +13,9 @@ module Api
           Display.find(1).time * 1000
         end
 
-        def signs
+        def sign
           role = Device.find_by(device_code: cookies[:device_code]).role
-          Slide.where(api_role: role).to_json
+          Slide.where(api_role: role).order("RANDOM()").first.to_json
         end
     end
   end
