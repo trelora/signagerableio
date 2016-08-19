@@ -1,7 +1,7 @@
 class Role < ActiveRecord::Base
   def self.update_roles
-    delete_roles
     roles = fetch_roles
+    delete_roles
     insert_roles(roles)
   end
 

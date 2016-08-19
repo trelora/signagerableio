@@ -1,7 +1,7 @@
 class Slide < ActiveRecord::Base
   def self.update_slides
-    delete_slides
     slides = fetch_slides
+    delete_slides
     insert_slides(slides)
   end
 
