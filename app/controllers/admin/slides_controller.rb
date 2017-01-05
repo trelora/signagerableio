@@ -1,5 +1,5 @@
 class Admin::SlidesController < ApplicationController
-  def update
+  def refresh
     Slide.update_slides
     Role.update_roles
     redirect_to admin_devices_path

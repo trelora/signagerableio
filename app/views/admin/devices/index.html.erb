@@ -13,6 +13,14 @@
     <%= button_to "Refresh", admin_refresh_slides_path, class: 'font-format button', id: "button-refresh", method: :get %>
   </div>
 
+<p id="custom">
+  Create Custom Slide: Use button below to create a custom slide to be inserted into the cycle.
+</p>
+
+<div class="text-center">
+  <%= button_to " Create Custom Slide", , class: 'font-format button', id: "button-refresh", method: :get %>
+</div>
+
   <p id="timer">
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide
   </p>
