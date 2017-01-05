@@ -48,6 +48,38 @@ body {
   width: 1024px;
   height: 576px;
   background-size: 1024px 576px;
+  overflow: hidden;
+
+  .ribbon {
+    text-align: center;
+    font-size: 4.5vw;
+    letter-spacing: 0.1vw;
+    color: white;
+    margin-top: 0;
+    padding-top: 0.5vw;
+    position: absolute;
+    left: -6vw;
+    top: 2vw;
+    width: 29vw;
+    transform: rotate(-24deg);
+    padding-bottom: 0.5vw;
+
+    .design-line {
+      margin-top: 0;
+      background-color: black;
+      width: 100%;
+      height: 0.5vw;
+    }
+
+    p {
+      padding-top: 1vw;
+      margin: 0;
+      line-height: 75%;
+      font-weight: 400;
+      font-size: 39px;
+      text-transform: uppercase;
+    }
+  }
 
   .titlesection {
     position: absolute;;
@@ -100,8 +132,8 @@ body {
 
 .form-check {
   display: inline-block;
-  width: 19px;
-  height: 19px;
+  width: 30px;
+  height: 30px;
 }
 
 #preview-options {

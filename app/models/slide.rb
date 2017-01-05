@@ -15,7 +15,7 @@ class Slide < ActiveRecord::Base
       ribbon_display: (params[:ribbon_display] == '0' ? false : true),
       active: (params[:active] == '0' ? false : true),
       display_rate: params[:display_rate],
-      custom_background: params[:custom_background] || 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg',
+      custom_background: (params[:custom_background].empty? ? 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg' : params[:custom_background]),
       custom: true
     )
   end

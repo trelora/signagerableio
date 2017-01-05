@@ -46,6 +46,15 @@ class Admin::SlidesController < ApplicationController
 
   private
   def slide_params
-    params.require(:slide).permit(:title, :subtitle, :display_rate, :active, :ribbon_display)
+    params.require(:slide).permit(
+      :title,
+      :subtitle,
+      :display_rate,
+      :active,
+      :ribbon_display,
+      :ribbon,
+      :ribbon_color,
+      :custom_background
+    )
   end
 end
