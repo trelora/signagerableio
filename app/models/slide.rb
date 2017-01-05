@@ -1,6 +1,11 @@
 class Slide < ActiveRecord::Base
+  def confirm_save
+    self.role = 'confirm'
+    self.save
+  end
+
   def self.create_preview(params)
-    return false if params[:title].nil? && params[:subtitle].nil? && params[:custom_background] == '0'
+    return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].nil?
     slide = Slide.create(
       role: 'pending',
       ribbon: params[:ribbon],

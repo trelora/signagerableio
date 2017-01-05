@@ -27,4 +27,8 @@ class ApplicationController < ActionController::Base
     cookies.permanent[:device_code] = device.generate_device_code
     device
   end
+
+  def destroy_all_pending_slides!
+    Slide.where(role: 'pending').destroy_all
+  end
 end

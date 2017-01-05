@@ -23,9 +23,16 @@ class Admin::SlidesController < ApplicationController
     if @slide = Slide.create_preview(slide_params)
       redirect_to admin_slide_path(@slide)
     else
-      flash.now[:error] = 'You must enter at least a title or a custom background to preview this slide'
-      render :new
+      flash[:danger] = 'You must enter at least a title or a custom background to preview this slide'
+      redirect_to new_admin_slide_path
     end
+  end
+
+  def confirm
+    slide = Slide.find_by(id: params[:slide_id])
+    slide.confirm_save
+    flash[:success] = 'Custom Slide Successfully Saved'
+    redirect_to admin_devices_path
   end
 
   def edit

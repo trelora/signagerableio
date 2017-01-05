@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/update_slides', to: "slides#refresh", as: :refresh_slides
-    resources :slides
+    resources :slides do
+      post '/confirm', to: 'slides#confirm'
+    end
     resources :devices, only: [:index, :edit, :update, :destroy] do
       collection do
         post :reveal

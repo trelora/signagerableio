@@ -22,8 +22,9 @@
 
   <table id="preview-options">
     <tr>
-      <td style="padding: 0 30px 50px 80px;"><%= button_to "Save Slide", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
-      <td style="padding: 0 30px 50px 80px;"><%= button_to "Edit Slide", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Save Slide", admin_slide_confirm_path(@slide.id), class: 'font-format button', id: "button-refresh", method: :post %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Edit Slide", admin_slide_path(@slide.id), class: 'font-format button', id: "button-refresh", method: :get %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Cancel", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get, data: {confirm: 'All changes will be discarded. Continue?'} %></td>
     </tr>
   </table>
 </center>
