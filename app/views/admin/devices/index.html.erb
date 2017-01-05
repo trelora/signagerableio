@@ -14,11 +14,12 @@
   </div>
 
 <p id="custom">
-  Create Custom Slide: Use button below to create a custom slide to be inserted into the cycle.
+  Custom Slides: Use the buttons below to create, update or delete custom slides.<br />
+  Custom Slides Currently in Active Rotation: <%= @slides.active_custom_slide_count %>
 </p>
 
 <div class="text-center">
-  <%= button_to " Create Custom Slide", , class: 'font-format button', id: "button-refresh", method: :get %>
+  <%= button_to " Create Custom Slide", new_admin_slide_path, class: 'font-format button', id: "button-refresh", method: :get %>
 </div>
 
   <p id="timer">

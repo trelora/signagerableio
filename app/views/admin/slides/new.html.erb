@@ -1,0 +1,23 @@
+
+  <div class="text-center">
+    <%= image_tag "trelora_logo.png", id: "trelora-logo" %>
+  </div>
+
+  <h1 class="text-center" id="titles">Create Custom Slide</h1>
+
+  <%= form_for([:admin, @slide]) do |f| %>
+    <div class="form-group text-center">
+      <%= f.label :title, class: 'font-format' %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.label :subtitle, class: 'font-format' %>
+      <%= f.text_field :subtitle, class: 'form-control' %>
+      <%= f.label :ribbon_display, class: 'font-format' %>
+      <%= f.check_box :ribbon_display, {}, 'true', 'false' %>
+      <%= f.label :display_rate, class: 'font-format' %>
+      <%= f.number_field :display_rate, '1', class: 'form-control', min: 1 %>
+      <%= f.label :active, class: 'font-format' %>
+      <%= f.check_box :active, 'true' %>
+
+      <%= f.submit "Preview Slide", class: 'font-format button', id: 'button-submit' %>
+    </div>
+  <% end %>
