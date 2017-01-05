@@ -17,13 +17,13 @@ RSpec.describe 'When an admin clicks create slide' do
         fill_in 'slide_display_rate', with: '5'
         click_on 'Preview Slide'
 
-        expect(current_url).to eq("/admin/slides/#{Slide.last.id}")
-        expect(page).to have_content('Edit Slide')
-        expect(page).to have_content('Save Slide')
+        expect(current_url).to eq("http://www.example.com/admin/slides/#{Slide.last.id}")
+        expect(page).to have_button('Edit Slide')
+        expect(page).to have_button('Save Slide')
 
-        click_on 'Create Slide'
+        click_on 'Save Slide'
 
-        expect(current_url).to eq('admin/devices')
+        expect(current_url).to eq('http://www.example.com/admin/devices')
         expect(page).to have_content('Slide Successfully Created')
         expect(page).to have_content('Custom Slides Currently in Active Rotation: 1')
       end

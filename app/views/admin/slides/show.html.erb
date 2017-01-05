@@ -3,3 +3,27 @@
 </div>
 
 <h1 class="text-center" id="titles">Previewing Custom Slide: <%= @slide.id %></h1>
+
+<center>
+  <div class="jumbotron" style='background-image: url("<%= @slide.custom_background %>"); padding-left: 0px;'>
+    <% if @slide.ribbon_display %>
+      <div class='ribbon' style='background-color: <%= @slide.ribbon_color %>;' >
+        <div class='design-line'></div>
+        <p><%= @slide.ribbon %></p>
+      </div>
+    <% end %>
+    <div class='titlesection'>
+      <img src= '<%= asset_path "trelora_house.png" %>' />
+      <p class='title'>  <%= @slide.title %>  </p>
+      <p class='subtitle'>  <%= @slide.subtitle %>  </p>
+    </div>
+    <div class='underline'></div>
+  </div>
+
+  <table id="preview-options">
+    <tr>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Save Slide", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Edit Slide", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
+    </tr>
+  </table>
+</center>

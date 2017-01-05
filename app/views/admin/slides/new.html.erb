@@ -10,12 +10,12 @@
       <%= f.text_field :title, class: 'form-control' %>
       <%= f.label :subtitle, class: 'font-format' %>
       <%= f.text_field :subtitle, class: 'form-control' %>
-      <%= f.label :ribbon_display, class: 'font-format' %>
-      <%= f.check_box :ribbon_display %>
+      <%= f.label :ribbon_display, 'Display Ribbon?', class: 'font-format' %>
+      <%= f.check_box :ribbon_display, class: 'form-check' %> <br />
       <%= f.label :display_rate, class: 'font-format' %>
-      <%= f.number_field :display_rate, class: 'form-control', min: 1 %>
-      <%= f.label :active, class: 'font-format' %>
-      <%= f.check_box :active, checked: true %>
+      <%= f.number_field :display_rate, class: 'form-control', min: 1, value: 5 %>
+      <%= f.label :active, 'Active?', class: 'font-format' %>
+      <%= f.check_box :active, class: 'form-check', checked: true %><br />
 
       <%= f.submit "Preview Slide", class: 'font-format button', id: 'button-submit' %>
     </div>

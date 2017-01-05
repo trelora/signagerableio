@@ -1,4 +1,7 @@
 class Admin::SlidesController < ApplicationController
+  layout "admin"
+  before_action :authorize!
+
   def refresh
     Slide.update_slides
     Role.update_roles
