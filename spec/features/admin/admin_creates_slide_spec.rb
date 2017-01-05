@@ -19,7 +19,7 @@ RSpec.describe 'When an admin clicks create slide' do
 
         expect(current_url).to eq("/admin/slides/#{Slide.last.id}")
         expect(page).to have_content('Edit Slide')
-        expect(page).to have_content('Create Slide')
+        expect(page).to have_content('Save Slide')
 
         click_on 'Create Slide'
 
