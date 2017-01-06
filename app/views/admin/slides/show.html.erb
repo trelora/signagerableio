@@ -1,0 +1,32 @@
+<%= render partial: 'trelora_logo' %>
+
+<% if @slide.update_preview? %>
+  <h1 class="text-center" id="titles">Previewing Custom Slide: <%= @slide.preview_id %></h1>
+<% else %>
+  <h1 class="text-center" id="titles">Previewing Custom Slide: <%= @slide.id %></h1>
+<% end %>
+
+<center>
+  <div class="jumbotron" style='background-image: url("<%= @slide.custom_background %>"); padding-left: 0px;'>
+    <% if @slide.ribbon_display %>
+      <div class='ribbon' style='background-color: <%= @slide.ribbon_color %>;' >
+        <div class='design-line'></div>
+        <p><%= @slide.ribbon %></p>
+      </div>
+    <% end %>
+    <div class='titlesection'>
+      <img src= '<%= asset_path "trelora_house.png" %>' />
+      <p class='title'>  <%= @slide.title %>  </p>
+      <p class='subtitle'>  <%= @slide.subtitle %>  </p>
+    </div>
+    <div class='underline'></div>
+  </div>
+
+  <table id="preview-options">
+    <tr>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Save Slide", admin_slide_confirm_path(@slide.id), class: 'font-format button', id: "button-refresh", method: :post %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Edit Slide", edit_admin_slide_path(@slide.id), class: 'font-format button', id: "button-refresh", method: :get %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Cancel", admin_devices_path, class: 'font-format button', id: "button-refresh", method: :get, data: {confirm: 'All changes will be discarded. Continue?'} %></td>
+    </tr>
+  </table>
+</center>
