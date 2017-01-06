@@ -14,8 +14,6 @@ class Slide < ActiveRecord::Base
     elsif self.role == 'pending'
       self.role = 'confirm'
       self.save
-    else
-      self.update
     end
   end
 

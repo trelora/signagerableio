@@ -9,7 +9,7 @@ class Admin::SlidesController < ApplicationController
   end
 
   def index
-    @custom_slides = Slide.where(custom: true)
+    @custom_slides = Slide.where(custom: true).order(:created_at)
   end
 
   def show
