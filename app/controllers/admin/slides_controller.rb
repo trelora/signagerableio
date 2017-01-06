@@ -63,6 +63,10 @@ class Admin::SlidesController < ApplicationController
   end
 
   def destroy
+    slide = Slide.find(params[:id])
+    slide.destroy
+    flash[:success] = 'Custom Slide Successfully Deleted'
+    redirect_to admin_slides_path
   end
 
   private

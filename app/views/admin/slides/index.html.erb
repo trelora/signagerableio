@@ -20,7 +20,7 @@
       <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
       <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
       <td><%= slide.active ? 'Yes' : 'No' %></td>
-      <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %> | <%= link_to 'Delete', admin_slide_path(slide.id), method: :delete %></td>
+      <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %> | <%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
     </tr>
   <% end %>
 </table>
