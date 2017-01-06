@@ -50,7 +50,8 @@ class Slide < ActiveRecord::Base
 
   private
     def self.delete_slides
-      Slide.delete_all
+      slides = Slide.where.not(custom: true)
+      slides.destroy_all
     end
 
     def self.fetch_slides
