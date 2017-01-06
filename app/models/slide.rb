@@ -8,8 +8,13 @@ class Slide < ActiveRecord::Base
   end
 
   def confirm_save
-    self.role = 'confirm'
-    self.save
+    if update_preview?
+      slide_to_be_updated = Slide.find_by(id: preview_id)
+      Slide.update_slide({orig: slide_to_be_updated, changes: self})
+    elsif self.role == 'pending'
+      self.role = 'confirm'
+      self.save
+    end
   end
 
   def custom_background?
@@ -76,5 +81,18 @@ class Slide < ActiveRecord::Base
                      best_large_image: slide[:best_large_image]
         )
       end
+    end
+
+    def self.update_slide(slides)
+      slides[:orig].update(
+        ribbon: slides[:changes].ribbon,
+        ribbon_color: slides[:changes].ribbon_color,
+        title: slides[:changes].title,
+        subtitle: slides[:changes].subtitle,
+        ribbon_display: slides[:changes].ribbon_display,
+        active: slides[:changes].active,
+        display_rate: slides[:changes].display_rate,
+        custom_background: slides[:changes].custom_background,
+      )
     end
 end

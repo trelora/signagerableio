@@ -11,7 +11,7 @@ RSpec.describe 'When an admin clicks edit slides' do
 
       click_on 'See All Custom Slides'
 
-      click_on slide.id
+      click_on 'Edit'
 
       fill_in 'slide_title', with: 'New Title'
       fill_in 'slide_subtitle', with: 'New Subtitle'
