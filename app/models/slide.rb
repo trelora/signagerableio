@@ -17,6 +17,18 @@ class Slide < ActiveRecord::Base
     end
   end
 
+  def determine_role
+    if title && !subtitle
+      # LARGE TEXT -- RIBBON OPTIONAL
+    elsif title && subtitle && !ribbon_display
+      # LARGE TEXT, SUBTEXT -- RIBBON NOT AVAILABLE
+    elsif !title && !subtitle && custom_background?
+      # CUSTOM BACKGROUND IMAGE -- RIBBON OPTIONAL
+    else
+      # STANDARD DISPLAY
+    end
+  end
+
   def custom_background?
     self.custom_background != 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg'
   end

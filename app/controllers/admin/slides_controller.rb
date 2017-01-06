@@ -21,7 +21,7 @@ class Admin::SlidesController < ApplicationController
   end
 
   def create
-    if params[:commit] == 'Save Changes' && @slide = Slide.create_preview(slide_params)
+    if params[:commit] == 'Save Slide' && @slide = Slide.create_preview(slide_params)
       @slide.confirm_save
       flash[:success] = 'Custom Slide Successfully Saved'
       redirect_to admin_devices_path
@@ -45,12 +45,12 @@ class Admin::SlidesController < ApplicationController
   end
 
   def update
-    if params[:commit] == 'Save Changes'
+    if params[:commit] == 'Save Slide'
       confirm_update(params)
       redirect_to admin_devices_path
     else
       slide = Slide.find(params[:id])
-      if slide.update_preview?
+      if slide.update_preview? || slide.role == 'pending'
         slide.update(slide_params)
         redirect_to admin_slide_path(slide)
       elsif preview_slide = Slide.create_preview(slide_params, slide.id)
