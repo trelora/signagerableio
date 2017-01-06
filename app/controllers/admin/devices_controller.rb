@@ -1,9 +1,11 @@
 class Admin::DevicesController < ApplicationController
   layout "admin"
   before_action :authorize!
+  before_action :destroy_all_pending_slides!
 
   def index
     @devices = AdminPresenter.new
+    @active_custom_slides = Slide.where(custom: true, active: true)
   end
 
   def edit
