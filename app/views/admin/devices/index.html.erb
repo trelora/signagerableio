@@ -14,13 +14,18 @@
   </div>
 
 <p id="custom">
-  Custom Slides: Use the buttons below to create, update or delete custom slides.<br />
-  Custom Slides Currently in Active Rotation: <%= @active_custom_slides.count %>
+  Custom Slides: Use the buttons below to create a slide or see all slides to edit and/or delete.<br />
+  Custom Slides Currently in Active Rotation: <%= link_to @active_custom_slides.count, admin_slides_path %>
 </p>
 
-<div class="text-center">
-  <%= button_to "Create Custom Slide", new_admin_slide_path, class: 'font-format button', id: "button-refresh", method: :get %>
-</div>
+<center>
+  <table id="preview-options">
+    <tr>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "Create Custom Slide", new_admin_slide_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
+      <td style="padding: 0 30px 50px 80px;"><%= button_to "See All Slides", admin_slides_path, class: 'font-format button', id: "button-refresh", method: :get %></td>
+    </tr>
+  </table>
+</center>
 
   <p id="timer">
     <i class="fa fa-clock-o" aria-hidden="true"></i>  Current Slide Time: <%= @devices.time %> second(s) per slide

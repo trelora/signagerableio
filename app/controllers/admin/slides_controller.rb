@@ -9,6 +9,7 @@ class Admin::SlidesController < ApplicationController
   end
 
   def index
+    @custom_slides = Slide.where(custom: true)
   end
 
   def show
@@ -36,9 +37,17 @@ class Admin::SlidesController < ApplicationController
   end
 
   def edit
+    @slide = Slide.find_by(id: params[:id])
   end
 
   def update
+    slide = Slide.find_by(id: params[:id])
+    if preview_slide = Slide.create_preview(slide_params, slide.id)
+      redirect_to admin_slide_path(preview_slide)
+    else
+      flash[:danger] = 'You must enter at least a title or a custom background to preview this slide'
+      redirect_to edit_admin_slide_path(slide)
+    end
   end
 
   def destroy

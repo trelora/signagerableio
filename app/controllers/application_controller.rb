@@ -29,6 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   def destroy_all_pending_slides!
-    Slide.where(role: 'pending').destroy_all
+    Slide.where('role LIKE ?', '%pending%').destroy_all
   end
 end

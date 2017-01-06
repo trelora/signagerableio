@@ -4,25 +4,4 @@
 
   <h1 class="text-center" id="titles">Create Custom Slide</h1>
 
-  <%= form_for([:admin, @slide]) do |f| %>
-    <div class="form-group text-center">
-      <%= f.label :title, class: 'font-format' %>
-      <%= f.text_field :title, class: 'form-control' %>
-      <%= f.label :subtitle, class: 'font-format' %>
-      <%= f.text_field :subtitle, class: 'form-control' %>
-      <%= f.label :ribbon_display, 'Display Ribbon?', class: 'font-format' %>
-      <%= f.check_box :ribbon_display, class: 'form-check' %><br />
-      <%= f.label :ribbon, 'Ribbon Text', class: 'font-format' %>
-      <%= f.text_field :ribbon, class: 'form-control' %>
-      <%= f.label :ribbon_color, 'Color of Ribbon', class: 'font-format' %>
-      <%= f.color_field :ribbon_color %><br />
-      <%= f.label :custom_background, 'Custom Image URL (Leave Blank for Default Image)', class: 'font-format' %>
-      <%= f.text_field :custom_background, class: 'form-control' %>
-      <%= f.label :display_rate, class: 'font-format' %>
-      <%= f.number_field :display_rate, class: 'form-control', min: 1, value: 5 %>
-      <%= f.label :active, 'Active?', class: 'font-format' %>
-      <%= f.check_box :active, class: 'form-check', checked: true %><br />
-
-      <%= f.submit "Preview Slide", class: 'font-format button', id: 'button-submit' %>
-    </div>
-  <% end %>
+  <%= render partial: 'slide_form' %>

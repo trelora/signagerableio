@@ -1,13 +1,25 @@
 class Slide < ActiveRecord::Base
+  def update_preview?
+    self.role.include?('pending-')
+  end
+
+  def preview_id
+    self.role.gsub('pending-', '')
+  end
+
   def confirm_save
     self.role = 'confirm'
     self.save
   end
 
-  def self.create_preview(params)
-    return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].nil?
+  def custom_background?
+    self.custom_background != 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg'
+  end
+
+  def self.create_preview(params, update_id = nil)
+    return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].empty?
     slide = Slide.create(
-      role: 'pending',
+      role: (update_id ? "pending-#{update_id}" : 'pending'),
       ribbon: params[:ribbon],
       ribbon_color: params[:ribbon_color],
       title: params[:title],
