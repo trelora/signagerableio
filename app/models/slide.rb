@@ -14,6 +14,8 @@ class Slide < ActiveRecord::Base
     elsif self.role == 'pending'
       self.role = 'confirm'
       self.save
+    else
+      self.update
     end
   end
 
@@ -35,6 +37,11 @@ class Slide < ActiveRecord::Base
       custom_background: (params[:custom_background].empty? ? 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg' : params[:custom_background]),
       custom: true
     )
+  end
+
+  def self.get_original_slide(id)
+    slide = self.find(id)
+    slide.update_preview? ? Slide.find(slide.preview_id) : slide
   end
 
   def self.update_slides

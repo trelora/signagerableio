@@ -15,8 +15,9 @@
     <%= f.label :display_rate, class: 'font-format' %>
     <%= f.number_field :display_rate, class: 'form-control', min: 1, value: 5 %>
     <%= f.label :active, 'Active?', class: 'font-format' %>
-    <%= f.check_box :active, class: 'form-check', checked: true %><br />
+    <%= f.check_box :active, class: 'form-check' %><br />
 
+    <%= f.submit "Save Changes", class: 'font-format button', id: 'button-submit' %>
     <%= f.submit "Preview Slide", class: 'font-format button', id: 'button-submit' %>
   </div>
 <% end %>

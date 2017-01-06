@@ -21,7 +21,11 @@ class Admin::SlidesController < ApplicationController
   end
 
   def create
-    if @slide = Slide.create_preview(slide_params)
+    if params[:commit] == 'Save Changes' && @slide = Slide.create_preview(slide_params)
+      @slide.confirm_save
+      flash[:success] = 'Custom Slide Successfully Saved'
+      redirect_to admin_devices_path
+    elsif @slide = Slide.create_preview(slide_params)
       redirect_to admin_slide_path(@slide)
     else
       flash[:danger] = 'You must enter at least a title or a custom background to preview this slide'
@@ -30,7 +34,7 @@ class Admin::SlidesController < ApplicationController
   end
 
   def confirm
-    slide = Slide.find_by(id: params[:slide_id])
+    slide = Slide.find(params[:slide_id])
     slide.confirm_save
     flash[:success] = 'Custom Slide Successfully Saved'
     redirect_to admin_devices_path
@@ -41,12 +45,20 @@ class Admin::SlidesController < ApplicationController
   end
 
   def update
-    slide = Slide.find_by(id: params[:id])
-    if preview_slide = Slide.create_preview(slide_params, slide.id)
-      redirect_to admin_slide_path(preview_slide)
+    if params[:commit] == 'Save Changes'
+      confirm_update(params)
+      redirect_to admin_devices_path
     else
-      flash[:danger] = 'You must enter at least a title or a custom background to preview this slide'
-      redirect_to edit_admin_slide_path(slide)
+      slide = Slide.find(params[:id])
+      if slide.update_preview?
+        slide.update(slide_params)
+        redirect_to admin_slide_path(slide)
+      elsif preview_slide = Slide.create_preview(slide_params, slide.id)
+        redirect_to admin_slide_path(preview_slide)
+      else
+        flash[:danger] = 'You must enter at least a title or a custom background to preview this slide'
+        redirect_to edit_admin_slide_path(slide)
+      end
     end
   end
 
@@ -65,5 +77,14 @@ class Admin::SlidesController < ApplicationController
       :ribbon_color,
       :custom_background
     )
+  end
+
+  def confirm_update(params)
+    slide = Slide.find(params[:id])
+    if slide.update_preview?
+      slide.confirm_save
+    else
+      slide.update(slide_params)
+    end
   end
 end
