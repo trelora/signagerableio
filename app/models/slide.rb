@@ -1,6 +1,6 @@
 class Slide < ActiveRecord::Base
   def update_preview?
-    self.role.include?('pending-')
+    self.role =~ /[0-9]/
   end
 
   def preview_id
@@ -11,21 +11,19 @@ class Slide < ActiveRecord::Base
     if update_preview?
       slide_to_be_updated = Slide.find_by(id: preview_id)
       Slide.update_slide({orig: slide_to_be_updated, changes: self})
-    elsif self.role == 'pending'
-      self.role = 'confirm'
+    elsif self.role.include?('pending')
+      self.role = "confirm#{determine_role}"
       self.save
     end
   end
 
   def determine_role
-    if title && !subtitle
-      # LARGE TEXT -- RIBBON OPTIONAL
-    elsif title && subtitle && !ribbon_display
-      # LARGE TEXT, SUBTEXT -- RIBBON NOT AVAILABLE
-    elsif !title && !subtitle && custom_background?
-      # CUSTOM BACKGROUND IMAGE -- RIBBON OPTIONAL
-    else
-      # STANDARD DISPLAY
+    if title && subtitle.empty?
+      '-lg-text'
+    elsif title && subtitle
+      '-lg-sub-text'
+    elsif title.empty? && subtitle
+      '-sub-text'
     end
   end
 
@@ -36,7 +34,7 @@ class Slide < ActiveRecord::Base
   def self.create_preview(params, update_id = nil)
     return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].empty?
     slide = Slide.create(
-      role: (update_id ? "pending-#{update_id}" : 'pending'),
+      role: (update_id ? "pending#{determine_role}-#{update_id}" : "pending#{determine_role(params)}"),
       ribbon: params[:ribbon],
       ribbon_color: params[:ribbon_color],
       title: params[:title],
@@ -61,6 +59,16 @@ class Slide < ActiveRecord::Base
   end
 
   private
+    def self.determine_role(params)
+      if params[:title] && params[:subtitle].empty?
+        '-lg-text'
+      elsif params[:title] && params[:subtitle]
+        '-lg-sub-text'
+      elsif params[:title].empty? && params[:subtitle]
+        '-sub-text'
+      end
+    end
+
     def self.delete_slides
       slides = Slide.where.not(custom: true)
       slides.destroy_all

@@ -16,7 +16,7 @@ RSpec.describe 'When an admin clicks create slide' do
       expect(current_url).to eq('http://www.example.com/admin/devices')
       expect(page).to have_content('Custom Slide Successfully Saved')
       expect(page).to have_content('Custom Slides Currently in Active Rotation: 1')
-      expect(Slide.last.role).to eq('custom-lg-text')
+      expect(Slide.last.role).to eq('confirm-lg-text')
     end
   end
 end
