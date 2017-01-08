@@ -1,24 +1,31 @@
 <%= render partial: 'trelora_logo' %>
 
-<h1 class="text-center" id="titles">All Custom Slide</h1>
+<h1 class="text-center" id="titles">All Custom Slides</h1>
 
-<table class="table">
-  <tr>
-    <th>Slide ID</th>
-    <th>Title</th>
-    <th>Ribbon Display?</th>
-    <th>Custom Background?</th>
-    <th>Active In Rotation?</th>
-    <th>Update Slide</th>
-  </tr>
-  <% @custom_slides.each do |slide| %>
+<center>
+  <div class="text-center">
+    <%= button_to "Create Custom Slide", new_admin_slide_path, class: 'font-format button', id: "button-refresh", method: :get %>
+  </div>
+  <table class="table">
     <tr>
-      <td><%= link_to slide.id, admin_slide_path(slide.id) %></td>
-      <td><%= slide.title %></td>
-      <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
-      <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
-      <td><%= slide.active ? 'Yes' : 'No' %></td>
-      <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %> | <%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
+      <th>Slide ID</th>
+      <th>Title</th>
+      <th>Style</th>
+      <th>Ribbon Display?</th>
+      <th>Custom Background?</th>
+      <th>Active In Rotation?</th>
+      <th>Update Slide</th>
     </tr>
-  <% end %>
-</table>
+    <% @custom_slides.each do |slide| %>
+      <tr>
+        <td><%= link_to slide.id, admin_slide_path(slide.id) %></td>
+        <td><%= slide.title %></td>
+        <td><%= slide.custom_style %></td>
+        <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
+        <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
+        <td><%= slide.active ? 'Yes' : 'No' %></td>
+        <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %> | <%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
+      </tr>
+    <% end %>
+  </table>
+</center>

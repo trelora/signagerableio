@@ -52,17 +52,17 @@ body {
 
   .ribbon {
     text-align: center;
-    font-size: 4.5vw;
+    font-size: 10%;
     letter-spacing: 0.1vw;
     color: white;
-    margin-top: 0;
-    padding-top: 0.5vw;
+    margin-top: 1%;
+    padding-top: 1%;
     position: absolute;
-    left: -6vw;
-    top: 2vw;
-    width: 29vw;
+    left: -12%;
+    top: 5%;
+    width: 50%;
     transform: rotate(-24deg);
-    padding-bottom: 0.5vw;
+    padding-bottom: 1%;
 
     .design-line {
       margin-top: 0;
@@ -78,6 +78,43 @@ body {
       font-weight: 400;
       font-size: 39px;
       text-transform: uppercase;
+    }
+  }
+
+  .large-text {
+    position: absolute;;
+    text-align: center;
+    font-size: 4.5vw;
+    color: white;
+    width: 100%;
+    padding: 13px 0 3px 0;
+
+    p {
+      padding-right: 17px;
+      margin: 0;
+      font-size: 80px;
+      text-transform: uppercase;
+      font-weight: bolder;
+      -webkit-text-stroke-width: 3px;
+      -webkit-text-stroke-color: black;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 400px;
+      &.title-0 {
+        height: 100px;
+        padding-top: 100px;
+      }
+      &.title-1 {
+        height: 310px;
+      }
+    }
+
+    img {
+      max-height: 40px;
+      position: absolute;
+      right: 30px;
+      top: -20px;
     }
   }
 
