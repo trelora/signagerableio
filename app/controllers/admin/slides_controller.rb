@@ -50,7 +50,7 @@ class Admin::SlidesController < ApplicationController
       redirect_to admin_devices_path
     else
       slide = Slide.find(params[:id])
-      if slide.update_preview? || slide.role == 'pending'
+      if slide.update_preview? || slide.role.include?('pending')
         slide.update(slide_params)
         redirect_to admin_slide_path(slide)
       elsif preview_slide = Slide.create_preview(slide_params, slide.id)

@@ -9,17 +9,17 @@
 <center>
   <div class="jumbotron" style='background-image: url("<%= @slide.custom_background %>"); padding-left: 0px;'>
     <% if @slide.ribbon_display %>
-      <div class='ribbon' style='background-color: <%= @slide.ribbon_color %>;' >
-        <div class='design-line'></div>
-        <p><%= @slide.ribbon %></p>
-      </div>
+      <%= render partial: 'ribbon_display' %>
     <% end %>
-    <div class='titlesection'>
-      <img src= '<%= asset_path "trelora_house.png" %>' />
-      <p class='title'>  <%= @slide.title %>  </p>
-      <p class='subtitle'>  <%= @slide.subtitle %>  </p>
-    </div>
-    <div class='underline'></div>
+    <% if @slide.role.include?('lg-text') %>
+      <%= render partial: 'large_text_preview' %>
+    <% elsif @slide.role.include?('lg-sub-text') %>
+      <%= render partial: 'large_sub_text_preview' %>
+    <% elsif @slide.role.include?('sub-text') %>
+      <%= render partial: 'sub_text_preview' %>
+    <% else %>
+      <%= render partial: 'custom_bg_preview' %>
+    <% end %>
   </div>
 
   <table id="preview-options">
