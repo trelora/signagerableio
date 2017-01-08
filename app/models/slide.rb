@@ -4,7 +4,7 @@ class Slide < ActiveRecord::Base
   end
 
   def preview_id
-    self.role.gsub('pending-', '')
+    self.role.split('-').last
   end
 
   def confirm_save
@@ -34,7 +34,7 @@ class Slide < ActiveRecord::Base
   def self.create_preview(params, update_id = nil)
     return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].empty?
     slide = Slide.create(
-      role: (update_id ? "pending#{determine_role}-#{update_id}" : "pending#{determine_role(params)}"),
+      role: (update_id ? "pending#{determine_role(params)}-#{update_id}" : "pending#{determine_role(params)}"),
       ribbon: params[:ribbon],
       ribbon_color: params[:ribbon_color],
       title: params[:title],
@@ -56,6 +56,18 @@ class Slide < ActiveRecord::Base
     slides = fetch_slides
     delete_slides
     insert_slides(slides)
+  end
+
+  def multiline_title?
+    title.downcase.include?('\n')
+  end
+
+  def multiline_title
+    title.downcase.split('\n')
+  end
+
+  def custom_style
+    role.split('-')[1..3].join(' ').capitalize
   end
 
   private
