@@ -20,7 +20,7 @@ class Slide < ActiveRecord::Base
   def determine_role
     if title && subtitle.empty?
       '-lg-text'
-    elsif title && subtitle
+    elsif !title.empty? && !subtitle.empty?
       '-lg-sub-text'
     elsif title.empty? && subtitle
       '-sub-text'
@@ -74,7 +74,7 @@ class Slide < ActiveRecord::Base
     def self.determine_role(params)
       if params[:title] && params[:subtitle].empty?
         '-lg-text'
-      elsif params[:title] && params[:subtitle]
+      elsif !params[:title].empty? && !params[:subtitle].empty?
         '-lg-sub-text'
       elsif params[:title].empty? && params[:subtitle]
         '-sub-text'
