@@ -167,39 +167,6 @@ body {
       top: -20px;
     }
   }
-
-  .titlesection {
-    position: absolute;;
-    bottom: 0;
-    text-align: right;
-    font-size: 4.5vw;
-    color: white;
-    width: 100%;
-    background-color: rgba(0,0,0,0.75);
-    padding: 13px 0 3px 0;
-
-    p {
-      padding-right: 17px;
-      margin: 0;
-      &.title {
-        font-size: 50px;
-        text-transform: uppercase;
-        font-weight: lighter;
-      }
-
-      &.subtitle {
-        font-size: 40px;
-        font-weight: lighter;
-      }
-    }
-
-    img {
-      max-height: 40px;
-      position: absolute;
-      bottom: 8px;
-      left: 10px;
-    }
-  }
 }
 
 .font-format {
