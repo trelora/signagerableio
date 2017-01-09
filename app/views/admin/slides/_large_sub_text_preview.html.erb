@@ -1,0 +1,13 @@
+<div class='large-text'>
+  <img src= '<%= asset_path "trelora_house.png" %>' />
+  <% if @slide.multiline_title? %>
+    <% @slide.multiline_title.each_with_index do |title, n| %>
+      <p class='title-<%= n %>'>  <%= title %>  </p>
+    <% end %>
+  <% else %>
+    <p> <%= @slide.title %> </p>
+  <% end %>
+  <div class='sub-text'>
+    <p> <%= @slide.subtitle %> </p>
+  </div>
+</div>
