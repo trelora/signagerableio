@@ -47,8 +47,10 @@ function renderContent(listingInfo) {
 
 
 function renderSlide(slideData, timeout, show_device_codes) {
-  preloadImage(slideData.best_large_image, function() {
-
+  var img
+  if (slideData.custom) { img = slideData.custom_background}
+  else { img = slideData.best_large_image }
+  preloadImage(img, function() {
     var nextSlide = getSlide(slideData, show_device_codes);
 
     if ($('.second').css('opacity') > 0) {
@@ -72,7 +74,7 @@ function getSlide(slide, show_device_codes) {
       "<div class='design-line'></div>" +
       "<p>" + slide.ribbon + "</p>" +
     "</div>" +
-    "<div class='imgbg' style='background-image: url(\"" + slide.best_large_image + "\");'></div>" +
+    "<div class='imgbg' style='background-image: url(\"" + (slide.custom ? slide.custom_background : slide.best_large_image) + "\");'></div>" +
     "<div class='titlesection'>" +
       "<img src='" + housePath + "'/>" +
       "<p class='title'>" + slide.title + "</p>" +
