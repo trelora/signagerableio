@@ -13,7 +13,7 @@
     <%= f.label :custom_background, 'Custom Image URL (Leave Blank for Default Image)', class: 'font-format' %>
     <%= f.text_field :custom_background, class: 'form-control' %>
     <%= f.label :display_rate, class: 'font-format' %>
-    <%= f.number_field :display_rate, class: 'form-control', min: 1, value: 5 %>
+    <%= f.number_field :display_rate, class: 'form-control', min: 1, value: (@slide.display_rate || 5) %>
     <%= f.label :active, 'Active?', class: 'font-format' %>
     <%= f.check_box :active, class: 'form-check' %><br />
 
