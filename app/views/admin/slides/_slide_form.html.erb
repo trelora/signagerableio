@@ -1,6 +1,6 @@
 <%= form_for([:admin, @slide]) do |f| %>
   <div class="form-group text-center">
-    <%= f.label :title, 'Title', class: 'font-format' %>
+    <%= f.label :title, class: 'font-format' %>
     <%= f.text_field :title, class: 'form-control' %>
     <%= f.label :subtitle, class: 'font-format' %>
     <%= f.text_field :subtitle, class: 'form-control' %>
@@ -12,8 +12,8 @@
     <%= f.color_field :ribbon_color %><br />
     <%= f.label :custom_background, 'Custom Image URL (Leave Blank for Default Image)', class: 'font-format' %>
     <%= f.text_field :custom_background, class: 'form-control' %>
-    <%= f.label :display_rate, class: 'font-format' %>
-    <%= f.number_field :display_rate, class: 'form-control', min: 1, value: 5 %>
+    <%= f.label :display_rate, 'Display Rate (Mark as 0 to place slide in random rotation)', class: 'font-format' %>
+    <%= f.number_field :display_rate, class: 'form-control', min: 0, value: (@slide.display_rate || 5) %>
     <%= f.label :active, 'Active?', class: 'font-format' %>
     <%= f.check_box :active, class: 'form-check' %><br />
 
