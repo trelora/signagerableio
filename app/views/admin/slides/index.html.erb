@@ -23,11 +23,9 @@
         <td><strong>Title: </strong><%= slide.title.empty? ? 'N/A' : slide.title %><br><strong>Subtitle: </strong><%= slide.subtitle.empty? ? 'N/A' : slide.subtitle %></td>
         <td><%= slide.custom_style %></td>
         <td><%= slide.display_rate == 0 ? 'Random' : "#{slide.display_rate} Frames" %></td>
-        <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
+        <td><%= check_box_tag 'ribbon_display', '1', (slide.ribbon_display ? true : false), class: 'active' %></td>
         <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
-        <td><%= check_box_tag 'active', '1', (slide.active ? true : false), class: 'active' %>
-        <!-- <%= slide.active ? 'Yes' : 'No' %> -->
-        </td>
+        <td><%= check_box_tag 'active', '1', (slide.active ? true : false), class: 'active' %></td>
         <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %><br><%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
       </tr>
     <% end %>

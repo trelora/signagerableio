@@ -28,8 +28,13 @@ module Api
 
       def update
         slide = Slide.find_by(id: params[:id])
-        toggleActive = (slide.active ? false : true)
-        slide.update(active: toggleActive)
+        if params[:toggle] == 'active'
+          toggle_active = (slide.active ? false : true)
+          slide.update(active: toggle_active)
+        else
+          toggle_ribbon = (slide.ribbon_display ? false : true)
+          slide.update(ribbon_display: toggle_ribbon)
+        end
         render json: slide
       end
 
