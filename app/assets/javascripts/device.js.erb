@@ -69,20 +69,78 @@ function renderSlide(slideData, timeout, show_device_codes) {
 
 function getSlide(slide, show_device_codes) {
   var housePath = '<%= asset_path "trelora_house.png" %>';
-  return (
-    "<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' >" +
-      "<div class='design-line'></div>" +
-      "<p>" + slide.ribbon + "</p>" +
-    "</div>" +
-    "<div class='imgbg' style='background-image: url(\"" + (slide.custom ? slide.custom_background : slide.best_large_image) + "\");'></div>" +
-    "<div class='titlesection'>" +
-      "<img src='" + housePath + "'/>" +
-      "<p class='title'>" + slide.title + "</p>" +
-      "<p class='subtitle'>" + slide.subtitle + "</p>" +
-      "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
-    "</div>" +
-    "<div class='underline'></div>"
-  );
+  var ribbonDisplay = ""
+  if (slide.ribbon_display || !slide.custom) {
+    ribbonDisplay = "<div class='ribbon' style='background-color: " + slide.ribbon_color + ";' >" +
+                      "<div class='design-line'></div>" +
+                      "<p>" + slide.ribbon + "</p>" +
+                    "</div>"
+  }
+  if (slide.custom) {
+    if (slide.role === 'confirm-lg-text') {
+      return (
+        "<div class='custom'>" +
+        ribbonDisplay +
+        "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
+        "<div class='lg-text'>" +
+          "<img src='" + housePath + "'/>" +
+          "<p class='title'>" + slide.title + "</p>" +
+          "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+        "</div>" +
+        "<div class='underline'></div>" +
+        "</div>"
+      )
+    } else if (slide.role === 'confirm-sub-text') {
+      return (
+        "<div class='custom'>" +
+          ribbonDisplay +
+          "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
+          "<div class='sub-text'>" +
+            "<img src='" + housePath + "'/>" +
+            "<p class='subtitle'>" + slide.subtitle + "</p>" +
+            "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+          "</div>" +
+          "<div class='underline'></div>" +
+        "</div>"
+      )
+    } else if (slide.role === 'confirm-lg-sub-text') {
+      return (
+        ribbonDisplay +
+        "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
+        "<div class='titlesection'>" +
+          "<img src='" + housePath + "'/>" +
+          "<p class='title'>" + slide.title + "</p>" +
+          "<p class='subtitle'>" + slide.subtitle + "</p>" +
+          "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+        "</div>" +
+        "<div class='underline'></div>"
+      )
+    } else {
+      return (
+        ribbonDisplay +
+        "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
+        "<div class='titlesection'>" +
+          "<img src='" + housePath + "'/>" +
+          "<p class='title'>" + slide.title + "</p>" +
+          "<p class='subtitle'>" + slide.subtitle + "</p>" +
+          "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+        "</div>" +
+        "<div class='underline'></div>"
+      )
+    }
+  } else {
+    return (
+      ribbonDisplay +
+      "<div class='imgbg' style='background-image: url(\"" + slide.best_large_image + "\");'></div>" +
+      "<div class='titlesection'>" +
+        "<img src='" + housePath + "'/>" +
+        "<p class='title'>" + slide.title + "</p>" +
+        "<p class='subtitle'>" + slide.subtitle + "</p>" +
+        "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+      "</div>" +
+      "<div class='underline'></div>"
+    );
+  }
 }
 
 

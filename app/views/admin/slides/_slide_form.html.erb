@@ -1,6 +1,6 @@
 <%= form_for([:admin, @slide]) do |f| %>
   <div class="form-group text-center">
-    <%= f.label :title, 'Title (Type "\n" to break title into two lines)', class: 'font-format' %>
+    <%= f.label :title, 'Title', class: 'font-format' %>
     <%= f.text_field :title, class: 'form-control' %>
     <%= f.label :subtitle, class: 'font-format' %>
     <%= f.text_field :subtitle, class: 'form-control' %>

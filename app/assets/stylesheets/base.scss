@@ -74,6 +74,63 @@ body {
   }
 }
 
+.custom {
+  .lg-text {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 4.5vw;
+    font-weight: 200;
+    color: white;
+    width: 100%;
+    padding: 6px 0 3px 0;
+    top: 255px;
+
+    .title {
+      padding-right: 17px;
+      font-size: 135px;
+      text-transform: uppercase;
+      font-weight: bolder;
+      -webkit-text-stroke-width: 4px;
+      -webkit-text-stroke-color: black;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 500px;
+    }
+  }
+
+  .sub-text {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 4.5vw;
+    color: white;
+    width: 100%;
+    padding: 13px 0 3px 0;
+    top: 255px;
+
+    p {
+      padding-right: 17px;
+      font-size: 71px;
+      font-weight: 400;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 500px;
+      -webkit-text-stroke-width: 0px;
+      -webkit-text-stroke-color: black;
+    }
+  }
+
+  img {
+    max-height: 70px;
+    position: absolute;
+    right: 75px;
+    top: -180px;
+  }
+}
+
 .titlesection {
   position: absolute;
   bottom: 0;
