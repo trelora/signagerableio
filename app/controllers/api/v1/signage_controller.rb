@@ -11,10 +11,10 @@ module Api
         else
           device.seen!
         end
-
+        sign = (Slide.display_custom_on_rotation(cookies[:counter]) ||
+                Slide.where('api_role = ?', role).order("RANDOM()").first).to_json
+        cookies[:counter] = Slide.update_counter(cookies[:counter]) || 1
         role = device.role
-        sign = Slide.where('api_role = ? OR custom = ? AND active = ?', role, true, true)
-          .order("RANDOM()").first.to_json
 
         response = {
           time: time,
