@@ -1,4 +1,11 @@
 class Slide < ActiveRecord::Base
+  def self.display_custom_on_rotation(counter)
+    custom_slides = Slide.where('custom = ? AND active = ?', true, true)
+    if custom_slides.pluck(:display_rate).include?(counter)
+      return custom_slides.where('display_rate = ?', counter).order('RANDOM()').first
+    end
+  end
+
   def update_preview?
     self.role =~ /[0-9]/
   end
@@ -62,6 +69,11 @@ class Slide < ActiveRecord::Base
 
   def custom_style
     role.split('-')[1..3].join(' ').capitalize
+  end
+
+  def self.update_counter(counter)
+    return 1 if counter >= Slide.where('custom = ?', true).pluck(:display_rate).sort.last
+    counter += 1
   end
 
   private
