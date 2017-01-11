@@ -14,7 +14,7 @@ module Api
         end
 
         role = device.role
-        sign = (Slide.display_custom_on_rotation(cookies[:counter]) ||
+        sign = (Slide.display_custom_on_rotation(cookies[:counter].to_i) ||
                 Slide.where('api_role = ?', role).order("RANDOM()").first).to_json
         cookies.permanent[:counter] = Slide.update_counter(cookies[:counter].to_i) || 1
 
