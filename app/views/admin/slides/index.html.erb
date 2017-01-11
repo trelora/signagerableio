@@ -6,7 +6,7 @@
   <div class="text-center">
     <%= button_to "Create Custom Slide", new_admin_slide_path, class: 'font-format button', id: "button-refresh", method: :get %>
   </div>
-  <table class="table">
+  <table class="table" id='slide-index'>
     <tr>
       <th>Slide ID</th>
       <th>Title/ Subtitle</th>
@@ -18,14 +18,16 @@
       <th>Update Slide</th>
     </tr>
     <% @custom_slides.each do |slide| %>
-      <tr>
+      <tr data-id='<%= slide.id %>' id='slide-<%= slide.id %>'>
         <td><%= link_to slide.id, admin_slide_path(slide.id) %></td>
         <td><strong>Title: </strong><%= slide.title.empty? ? 'N/A' : slide.title %><br><strong>Subtitle: </strong><%= slide.subtitle.empty? ? 'N/A' : slide.subtitle %></td>
         <td><%= slide.custom_style %></td>
         <td><%= slide.display_rate == 0 ? 'Random' : "#{slide.display_rate} Frames" %></td>
         <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
         <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
-        <td><%= slide.active ? 'Yes' : 'No' %></td>
+        <td><%= check_box_tag 'active', '1', (slide.active ? true : false), class: 'active' %>
+        <!-- <%= slide.active ? 'Yes' : 'No' %> -->
+        </td>
         <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %><br><%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
       </tr>
     <% end %>

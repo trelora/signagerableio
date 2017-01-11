@@ -26,6 +26,13 @@ module Api
         respond_with JSON.generate(response)
       end
 
+      def update
+        slide = Slide.find_by(id: params[:id])
+        toggleActive = (slide.active ? false : true)
+        slide.update(active: toggleActive)
+        render json: slide
+      end
+
       private
 
       def time
