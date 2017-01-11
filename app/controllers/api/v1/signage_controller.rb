@@ -13,7 +13,8 @@ module Api
         end
 
         role = device.role
-        sign = Slide.where(api_role: role).order("RANDOM()").first.to_json
+        sign = Slide.where('api_role = ? OR custom = ? AND active = ?', role, true, true)
+          .order("RANDOM()").first.to_json
 
         response = {
           time: time,

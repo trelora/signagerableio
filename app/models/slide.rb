@@ -60,14 +60,6 @@ class Slide < ActiveRecord::Base
     insert_slides(slides)
   end
 
-  def multiline_title?
-    title.downcase.include?('\n')
-  end
-
-  def multiline_title
-    title.downcase.split('\n')
-  end
-
   def custom_style
     role.split('-')[1..3].join(' ').capitalize
   end
