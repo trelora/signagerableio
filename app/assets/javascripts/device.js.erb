@@ -106,14 +106,16 @@ function getSlide(slide, show_device_codes) {
     } else if (slide.role === 'confirm-lg-sub-text') {
       return (
         ribbonDisplay +
-        "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
-        "<div class='titlesection'>" +
-          "<img src='" + housePath + "'/>" +
-          "<p class='title'>" + slide.title + "</p>" +
-          "<p class='subtitle'>" + slide.subtitle + "</p>" +
-          "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
-        "</div>" +
-        "<div class='underline'></div>"
+        "<div class='custom'>" +
+          "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
+          "<div class='lg-sub-text'>" +
+            "<img src='" + housePath + "'/>" +
+            "<p class='title'>" + slide.title + "</p>" +
+            "<p class='subtitle'>" + slide.subtitle + "</p>" +
+            "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
+          "</div>" +
+          "<div class='underline'></div>" +
+        "</div>"
       )
     } else {
       return (

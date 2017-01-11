@@ -83,7 +83,7 @@ body {
     font-weight: 200;
     color: white;
     width: 100%;
-    padding: 6px 0 3px 0;
+    padding: 13px 0 3px 0;
     top: 255px;
 
     .title {
@@ -118,8 +118,36 @@ body {
       justify-content: center;
       flex-direction: column;
       height: 500px;
-      -webkit-text-stroke-width: 0px;
-      -webkit-text-stroke-color: black;
+    }
+  }
+
+  .lg-sub-text {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 4.5vw;
+    color: white;
+    width: 100%;
+    padding: 13px 0 3px 0;
+    top: 255px;
+
+    p {
+      padding-right: 17px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      &.title {
+        font-size: 125px;
+        font-weight: bolder;
+        text-transform: uppercase;
+        margin-bottom: -40px;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: black;
+      }
+      &.subtitle {
+        font-size: 71px;
+        font-weight: 400;
+      }
     }
   }
 
