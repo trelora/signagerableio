@@ -79,7 +79,6 @@ function getSlide(slide, show_device_codes) {
   if (slide.custom) {
     if (slide.role === 'confirm-lg-text') {
       return (
-        "<div class='custom'>" +
         ribbonDisplay +
         "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
         "<div class='lg-text'>" +
@@ -87,12 +86,10 @@ function getSlide(slide, show_device_codes) {
           "<p class='title'>" + slide.title + "</p>" +
           "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
         "</div>" +
-        "<div class='underline'></div>" +
-        "</div>"
+        "<div class='underline'></div>"
       )
     } else if (slide.role === 'confirm-sub-text') {
       return (
-        "<div class='custom'>" +
           ribbonDisplay +
           "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
           "<div class='sub-text'>" +
@@ -100,13 +97,11 @@ function getSlide(slide, show_device_codes) {
             "<p class='subtitle'>" + slide.subtitle + "</p>" +
             "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
           "</div>" +
-          "<div class='underline'></div>" +
-        "</div>"
+          "<div class='underline'></div>"
       )
     } else if (slide.role === 'confirm-lg-sub-text') {
       return (
         ribbonDisplay +
-        "<div class='custom'>" +
           "<div class='imgbg' style='background-image: url(\"" + slide.custom_background + "\");'></div>" +
           "<div class='lg-sub-text'>" +
             "<img src='" + housePath + "'/>" +
@@ -114,8 +109,7 @@ function getSlide(slide, show_device_codes) {
             "<p class='subtitle'>" + slide.subtitle + "</p>" +
             "<div class='device-code'>"+ (show_device_codes ? deviceCode : '') +"</div>" +
           "</div>" +
-          "<div class='underline'></div>" +
-        "</div>"
+          "<div class='underline'></div>"
       )
     } else {
       return (
