@@ -9,8 +9,9 @@
   <table class="table">
     <tr>
       <th>Slide ID</th>
-      <th>Title</th>
+      <th>Title/ Subtitle</th>
       <th>Style</th>
+      <th>Display Rate</th>
       <th>Ribbon Display?</th>
       <th>Custom Background?</th>
       <th>Active In Rotation?</th>
@@ -19,12 +20,13 @@
     <% @custom_slides.each do |slide| %>
       <tr>
         <td><%= link_to slide.id, admin_slide_path(slide.id) %></td>
-        <td><%= slide.title %></td>
+        <td><strong>Title: </strong><%= slide.title.empty? ? 'N/A' : slide.title %><br><strong>Subtitle: </strong><%= slide.subtitle.empty? ? 'N/A' : slide.subtitle %></td>
         <td><%= slide.custom_style %></td>
+        <td><%= slide.display_rate == 0 ? 'Random' : "#{slide.display_rate} Frames" %></td>
         <td><%= slide.ribbon_display ? 'Yes' : 'No' %></td>
         <td><%= slide.custom_background? ? 'Yes' : 'No' %></td>
         <td><%= slide.active ? 'Yes' : 'No' %></td>
-        <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %> | <%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
+        <td><%= link_to 'Edit', edit_admin_slide_path(slide.id) %><br><%= link_to 'Delete', admin_slide_path(slide.id), method: :delete, data: {confirm: 'Are you sure you want to permanently delete this slide?'} %></td>
       </tr>
     <% end %>
   </table>
