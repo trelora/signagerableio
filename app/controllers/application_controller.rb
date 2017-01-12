@@ -25,6 +25,11 @@ class ApplicationController < ActionController::Base
   def create_device
     device = Device.new
     cookies.permanent[:device_code] = device.generate_device_code
+    cookies.permanent[:counter] = 1
     device
+  end
+
+  def destroy_all_pending_slides!
+    Slide.where('role LIKE ?', '%pending%').destroy_all
   end
 end

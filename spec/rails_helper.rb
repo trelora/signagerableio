@@ -94,3 +94,18 @@ RSpec.configure do |config|
      DatabaseCleaner.clean
    end
 end
+
+def create_custom_slide
+  Slide.create(
+    role: 'confirm',
+    ribbon: 'Test Ribbon',
+    ribbon_color: '#428bca',
+    title: 'Test Title',
+    subtitle: 'Test Subtitle',
+    ribbon_display: true,
+    active: true,
+    display_rate: 5,
+    custom_background: 'http://www.this.sample.jpeg',
+    custom: true
+  )
+end
