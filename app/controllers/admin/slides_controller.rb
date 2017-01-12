@@ -88,7 +88,9 @@ class Admin::SlidesController < ApplicationController
     if slide.update_preview?
       slide.confirm_save
     else
-      slide.update(slide_params)
+      params = slide_params
+      params.merge!(role: "confirm#{slide.determine_role}")
+      slide.update(params)
     end
   end
 end

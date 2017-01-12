@@ -133,6 +133,7 @@ class Slide < ActiveRecord::Base
       slides[:orig].update(
         ribbon: slides[:changes].ribbon,
         ribbon_color: slides[:changes].ribbon_color,
+        role: "confirm#{determine_role(slides[:changes])}",
         title: slides[:changes].title,
         subtitle: slides[:changes].subtitle,
         ribbon_display: slides[:changes].ribbon_display,
