@@ -72,7 +72,7 @@ class Slide < ActiveRecord::Base
   end
 
   def self.update_counter(counter)
-    return 1 if counter >= Slide.where('custom = ? AND active = ?', true, true).pluck(:display_rate).sort.last
+    return 1 if counter >= Slide.where('custom = ? AND active = ?', true, true).pluck(:display_rate).sort.last.to_i
     counter += 1
   end
 
