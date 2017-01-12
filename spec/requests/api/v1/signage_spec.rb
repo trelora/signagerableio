@@ -11,7 +11,6 @@ RSpec.describe "GET /api/v1/signage" do
 
       get "/api/v1/signage"
 
-      # binding.pry
       expect(json_body["time"]).to eq(1000)
       expect(json_body["signs"].first["best_large_image"]).to eq("https://trelora.smugmug.com/1499-Blake-St-Unit-3L/i-pmXPcMm/0/X2/IS1fovc14evo0k0000000000-X2.jpg")
       expect(json_body["signs"].first["ribbon"]).to eq("Coming Soon!")
