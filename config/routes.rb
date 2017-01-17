@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
       resources :signage, only: [:index, :update]
-      resources :slides, onyl: [:create]
+      resources :slides, onyl: [:show, :create, :update]
     end
   end
 

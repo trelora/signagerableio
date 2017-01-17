@@ -6,12 +6,10 @@ class Slide < ActiveRecord::Base
     end
   end
 
-  def update_preview?
-    self.role =~ /[0-9]/
-  end
-
-  def preview_id
-    self.role.split('-').last
+  def update_information(params)
+    params[:display_rate] = params[:display_rate].to_i
+    self.update(params)
+    self.update(role: "confirm#{determine_role}")
   end
 
   def confirm_save
@@ -37,27 +35,6 @@ class Slide < ActiveRecord::Base
     self.custom_background != 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg'
   end
 
-  def self.create_preview(params, update_id = nil)
-    return false if params[:title].empty? && params[:subtitle].empty? && params[:custom_background].empty?
-    slide = Slide.create(
-      role: (update_id ? "pending#{determine_role(params)}-#{update_id}" : "pending#{determine_role(params)}"),
-      ribbon: params[:ribbon],
-      ribbon_color: params[:ribbon_color],
-      title: params[:title],
-      subtitle: params[:subtitle],
-      ribbon_display: (params[:ribbon_display] == '0' ? false : true),
-      active: (params[:active] == '0' ? false : true),
-      display_rate: params[:display_rate],
-      custom_background: (params[:custom_background].empty? ? 'https://static1.squarespace.com/static/5602b79ee4b0a65d125ea3c4/t/57b37b0bb3db2b80ee031840/1471380241780/DSC05223.jpeg' : params[:custom_background]),
-      custom: true
-    )
-  end
-
-  def self.get_original_slide(id)
-    slide = self.find(id)
-    slide.update_preview? ? Slide.find(slide.preview_id) : slide
-  end
-
   def self.update_slides
     slides = fetch_slides
     delete_slides
@@ -74,18 +51,6 @@ class Slide < ActiveRecord::Base
   end
 
   private
-    def self.determine_role(params)
-      if !params[:title].empty? && params[:subtitle].empty?
-        '-lg-text'
-      elsif !params[:title].empty? && !params[:subtitle].empty?
-        '-lg-sub-text'
-      elsif params[:title].empty? && !params[:subtitle].empty?
-        '-sub-text'
-      else
-        '-custom-image'
-      end
-    end
-
     def self.delete_slides
       slides = Slide.where.not(custom: true)
       slides.destroy_all
@@ -124,19 +89,5 @@ class Slide < ActiveRecord::Base
                      best_large_image: slide[:best_large_image]
         )
       end
-    end
-
-    def self.update_slide(slides)
-      slides[:orig].update(
-        ribbon: slides[:changes].ribbon,
-        ribbon_color: slides[:changes].ribbon_color,
-        role: "confirm#{determine_role(slides[:changes])}",
-        title: slides[:changes].title,
-        subtitle: slides[:changes].subtitle,
-        ribbon_display: slides[:changes].ribbon_display,
-        active: slides[:changes].active,
-        display_rate: slides[:changes].display_rate,
-        custom_background: slides[:changes].custom_background,
-      )
     end
 end

@@ -1,4 +1,10 @@
 var Main = React.createClass({
+  componentWillMount () {
+    if (this.props.slideId) {
+      this.getSlideData(this.props.slideId)
+    }
+  },
+
   getInitialState () {
     return {
       slide: {
@@ -12,6 +18,21 @@ var Main = React.createClass({
         active: true
       }
     }
+  },
+
+  getSlideData (slideId) {
+    $.ajax ({
+      url: `/api/v1/slides/${slideId}`,
+      type: 'GET',
+      success: (data) => {
+        var slide = data
+        this.setState({ slide: data })
+      }
+    })
+  },
+
+  forgetIt () {
+    window.location.href = '/admin/slides'
   },
 
   handleSlideSaving (data) {
@@ -74,7 +95,7 @@ var Main = React.createClass({
   render () {
     return (
       <div className='row'>
-        <div className='col-md-6'>
+        <div className='col-md-4'>
           <Form slide={this.state.slide}
                 updateRibbonDisplay={this.updateRibbonDisplay}
                 updateActive={this.updateActive}
@@ -84,9 +105,10 @@ var Main = React.createClass({
                 handleRibbonColorChange={this.handleRibbonColorChange}
                 handleBgChange={this.handleBgChange}
                 handleDisplayRateChange={this.handleDisplayRateChange}
-                handleSlideSaving={this.handleSlideSaving} />
+                handleSlideSaving={this.handleSlideSaving}
+                forgetIt={this.forgetIt} />
         </div>
-        <div className='col-md-6'>
+        <div className='col-md-8'>
           <Preview slide={this.state.slide} />
         </div>
       </div>

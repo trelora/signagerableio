@@ -3,9 +3,25 @@ module Api
     class SlidesController < ApiController
       respond_to :json
 
+      def show
+        slide = Slide.find_by(id: params[:id])
+        render json: slide
+      end
+
       def create
         slide = Slide.new(slide_params)
         if slide.confirm_save
+          render json: {'redirect': true,
+                        'redirect_url': admin_slides_path}
+        else
+          render json: {'redirect': false,
+                        'error': 'slide did not save'}
+        end
+      end
+
+      def update
+        slide = Slide.find_by(id: params[:id])
+        if slide.update_information(slide_params)
           render json: {'redirect': true,
                         'redirect_url': admin_slides_path}
         else

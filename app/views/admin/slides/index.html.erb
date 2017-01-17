@@ -19,7 +19,7 @@
     </tr>
     <% @custom_slides.each do |slide| %>
       <tr data-id='<%= slide.id %>' id='slide-<%= slide.id %>'>
-        <td><%= link_to slide.id, admin_slide_path(slide.id) %></td>
+        <td><%= link_to slide.id, edit_admin_slide_path(slide.id) %></td>
         <td><strong>Title: </strong><%= slide.title.empty? ? 'N/A' : slide.title %><br><strong>Subtitle: </strong><%= slide.subtitle.empty? ? 'N/A' : slide.subtitle %></td>
         <td><%= slide.custom_style %></td>
         <td><%= slide.display_rate == 0 ? 'Random' : "#{slide.display_rate} Frames" %></td>
