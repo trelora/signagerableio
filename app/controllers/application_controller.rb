@@ -28,8 +28,4 @@ class ApplicationController < ActionController::Base
     cookies.permanent[:counter] = 1
     device
   end
-
-  def destroy_all_pending_slides!
-    Slide.where('role LIKE ?', '%pending%').destroy_all
-  end
 end
