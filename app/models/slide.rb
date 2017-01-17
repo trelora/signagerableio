@@ -15,13 +15,10 @@ class Slide < ActiveRecord::Base
   end
 
   def confirm_save
-    if update_preview?
-      slide_to_be_updated = Slide.find_by(id: preview_id)
-      Slide.update_slide({orig: slide_to_be_updated, changes: self})
-    elsif self.role.include?('pending')
-      self.role = "confirm#{determine_role}"
-      self.save
-    end
+    self.role = "confirm#{determine_role}"
+    self.custom = true
+    self.display_rate = self.display_rate.to_i
+    self.save
   end
 
   def determine_role

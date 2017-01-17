@@ -3,7 +3,6 @@ $(document).ready(function(){
 })
 
 function toggleActive () {
-  debugger
   var toggleClass = $(this)['0'].name
   var $this = $(this).parents('tr')
   var slideId = $this.data().id
