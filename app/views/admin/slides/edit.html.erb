@@ -2,4 +2,6 @@
 
 <h1 class="text-center" id="titles">Edit Slide ID <%= @slide.id %></h1>
 
-<%= render partial: 'slide_form' %>
+<center>
+<%= react_component 'Main', { slideId: @slide.id } %>
+</center>

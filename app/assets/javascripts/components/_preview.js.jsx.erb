@@ -1,0 +1,39 @@
+var Preview = React.createClass({
+  render () {
+    var treloraHouse = '<%= asset_path "trelora_house.png" %>'
+    return (
+      <div>
+        <h1>Preview!</h1>
+        <div className='jumbotron' style={{backgroundImage: 'url(' + this.props.slide.custom_background + ')'}}>
+          {this.props.slide.ribbon_display &&
+            <div className='ribbon' style={{backgroundColor: this.props.slide.ribbon_color}}>
+              <div className='design-line' />
+              <p>{this.props.slide.ribbon}</p>
+            </div>
+          }
+          {this.props.slide.title !== '' && this.props.slide.subtitle === '' &&
+            <div className='large-text'>
+              <img src={treloraHouse} />
+              <p>{this.props.slide.title}</p>
+            </div>
+          }
+          {this.props.slide.title === '' && this.props.subtitle !== '' &&
+            <div className='sub-text'>
+              <img src={treloraHouse} />
+              <p>{this.props.slide.subtitle}</p>
+            </div>
+          }
+          {this.props.slide.title !== '' && this.props.slide.subtitle !== '' &&
+            <div className='large-text'>
+              <img src={treloraHouse} />
+              <p>{this.props.slide.title}</p>
+              <div className='sub-text'>
+                <p>{this.props.slide.subtitle}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    )
+  }
+})

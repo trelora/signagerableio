@@ -47,7 +47,6 @@ module Api
       def show_device_codes
         Display.last.show_device_codes
       end
-
     end
   end
 end
