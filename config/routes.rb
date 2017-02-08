@@ -7,12 +7,14 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
-      resources :signage, only: :index
+      resources :signage, only: [:index, :update]
+      resources :slides, onyl: [:show, :create, :update]
     end
   end
 
   namespace :admin do
-    get '/update_slides', to: "slides#update", as: :refresh_slides
+    get '/update_slides', to: "slides#refresh", as: :refresh_slides
+    resources :slides, only: [:index, :destroy, :new, :edit]
     resources :devices, only: [:index, :edit, :update, :destroy] do
       collection do
         post :reveal

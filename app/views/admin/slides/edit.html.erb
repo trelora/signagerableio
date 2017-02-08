@@ -1,0 +1,7 @@
+<%= render partial: 'trelora_logo' %>
+
+<h1 class="text-center" id="titles">Edit Slide ID <%= @slide.id %></h1>
+
+<center>
+<%= react_component 'Main', { slideId: @slide.id } %>
+</center>

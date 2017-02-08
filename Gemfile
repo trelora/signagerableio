@@ -13,8 +13,9 @@ gem 'figaro'
 gem 'simplecov', :require => false, :group => :test
 gem 'faraday'
 gem 'responders', '~> 2.0'
-gem "selenium-webdriver"
+gem 'selenium-webdriver'
 gem 'fastimage'
+gem 'react-rails'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -24,7 +25,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara'
-  gem "capybara-webkit"
+  gem 'capybara-webkit'
   gem 'launchy'
   gem 'byebug'
   gem 'pry-rails'
@@ -39,7 +40,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'show_me_the_cookies'
-  gem "database_cleaner"
+  gem 'database_cleaner'
 end
 
 group :production do

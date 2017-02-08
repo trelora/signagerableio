@@ -10,10 +10,13 @@ module Api
           device = create_device
         else
           device.seen!
+          cookies.permanent[:counter] ||= 1
         end
 
         role = device.role
-        sign = Slide.where(api_role: role).order("RANDOM()").first.to_json
+        sign = (Slide.display_custom_on_rotation(cookies[:counter].to_i) ||
+                Slide.where('api_role = ? OR display_rate = ?', role, 0).order("RANDOM()").first).to_json
+        cookies.permanent[:counter] = Slide.update_counter(cookies[:counter].to_i) || 1
 
         response = {
           time: time,
@@ -21,6 +24,18 @@ module Api
           sign: JSON.parse(sign),
         }
         respond_with JSON.generate(response)
+      end
+
+      def update
+        slide = Slide.find_by(id: params[:id])
+        if params[:toggle] == 'active'
+          toggle_active = (slide.active ? false : true)
+          slide.update(active: toggle_active)
+        else
+          toggle_ribbon = (slide.ribbon_display ? false : true)
+          slide.update(ribbon_display: toggle_ribbon)
+        end
+        render json: slide
       end
 
       private
@@ -32,7 +47,6 @@ module Api
       def show_device_codes
         Display.last.show_device_codes
       end
-
     end
   end
 end

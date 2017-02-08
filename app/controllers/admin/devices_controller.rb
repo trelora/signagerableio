@@ -4,6 +4,7 @@ class Admin::DevicesController < ApplicationController
 
   def index
     @devices = AdminPresenter.new
+    @active_custom_slides = Slide.where(custom: true, active: true)
   end
 
   def edit
