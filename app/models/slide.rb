@@ -81,11 +81,11 @@ class Slide < ActiveRecord::Base
       translation = translate_roles
       slides.each do |slide|
         Slide.create(role: slide[:role],
-                     api_role: translation[slide[:role]],
-                     ribbon: slide[:ribbon],
-                     ribbon_color: slide[:ribbon_color],
-                     title: slide[:title],
-                     subtitle: slide[:subtitle],
+                     api_role: translation[slide[:signage_role]],
+                     ribbon: slide[:signage_ribbon],
+                     ribbon_color: slide[:signage_ribbon_color],
+                     title: slide[:signage_title],
+                     subtitle: slide[:signage_subtitle],
                      best_large_image: slide[:best_large_image]
         )
       end
