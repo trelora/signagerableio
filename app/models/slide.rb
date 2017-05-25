@@ -78,10 +78,9 @@ class Slide < ActiveRecord::Base
     end
 
     def self.insert_slides(slides)
-      translation = translate_roles
       slides.each do |slide|
-        Slide.create(role: slide[:role],
-                     api_role: translation[slide[:signage_role]],
+        Slide.create(role: slide[:signage_role],
+                     api_role: slide[:signage_role],
                      ribbon: slide[:signage_ribbon],
                      ribbon_color: slide[:signage_ribbon_color],
                      title: slide[:signage_title],
