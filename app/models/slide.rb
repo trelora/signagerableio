@@ -67,20 +67,14 @@ class Slide < ActiveRecord::Base
       TreloraServices.new.get_roles
     end
 
-    def self.translate_roles
-      roles = fetch_roles
-
-      roles.reduce({}) do |translations, role|
-        key = TreloraServices.new.house_listing(role.to_sym).first[:role]
-        translations[key] = role
-        translations
-      end
+    def self.translate_role(x)
+      x.gsub(' ', '').downcase
     end
 
     def self.insert_slides(slides)
       slides.each do |slide|
         Slide.create(role: slide[:signage_role],
-                     api_role: slide[:signage_role],
+                     api_role: self.translate_role(slide[:signage_role]),
                      ribbon: slide[:signage_ribbon],
                      ribbon_color: slide[:signage_ribbon_color],
                      title: slide[:signage_title],
