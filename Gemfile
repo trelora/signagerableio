@@ -17,7 +17,7 @@ gem 'faraday'
 gem 'responders', '~> 2.0'
 gem 'selenium-webdriver'
 gem 'fastimage'
-gem 'react-rails'
+gem 'react-rails', '1.8.2'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

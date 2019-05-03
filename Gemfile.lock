@@ -164,8 +164,9 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rdoc (4.3.0)
-    react-rails (2.5.0)
+    react-rails (1.8.2)
       babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
       connection_pool
       execjs
       railties (>= 3.2)
@@ -268,7 +269,7 @@ DEPENDENCIES
   pry-rails
   rails (= 4.2.10)
   rails_12factor
-  react-rails
+  react-rails (= 1.8.2)
   responders (~> 2.0)
   rspec-rails (~> 3.4)
   sass-rails (~> 5.0)
