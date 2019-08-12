@@ -1,5 +1,14 @@
 # Signagerableio
 
+## TRELORA API
+Gathers information from my.trelora.com/api (See [trelora_services.rb](https://github.com/trelora/signagerableio/blob/master/app/services/trelora_services.rb)).
+
+## Deploys
+`git push heroku master`
+
+# OLD README
+## Signagerableio
+
 ### TEAM
  - [Sal Espinosa](https://twitter.com/sespinos)
  - [Alex Navarrete](https://twitter.com/salvi6god)
